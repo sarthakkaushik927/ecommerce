@@ -29,6 +29,7 @@ model User {
   isBlocked    Boolean  @default(false)
   avatarUrl    String?
   coinBalance  Int      @default(0)
+  referralCode String?  @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -42,6 +43,8 @@ model User {
   couponRedemptions CouponRedemption[]
   reviews           Review[]
   notifications     Notification[]
+  referralsGiven    Referral[]         @relation("ReferrerReferrals")
+  referralReceived  Referral?          @relation("RefereeReferral")
 
   @@index([role, createdAt])
 }
@@ -204,10 +207,11 @@ model ProductVariant {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  product        Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product        Product              @relation(fields: [productId], references: [id], onDelete: Cascade)
   stockMovements StockMovement[]
   cartItems      CartItem[]
   orderItems     OrderItem[]
+  branchStock    BranchVariantStock[]
 
   @@index([productId])
   @@index([stock])
@@ -407,6 +411,8 @@ model Order {
   id            String        @id @default(cuid())
   orderNumber   String        @unique
   userId        String
+  /// Branch that fulfils this order (resolved at checkout; null for legacy orders).
+  branchId      String?
   status        OrderStatus   @default(PLACED)
   paymentMethod PaymentMethod
   paymentStatus PaymentStatus @default(PENDING)
@@ -440,15 +446,18 @@ model Order {
   user             User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
   coupon           Coupon?              @relation(fields: [couponId], references: [id], onDelete: SetNull)
   rider            Rider?               @relation(fields: [riderId], references: [id], onDelete: SetNull)
+  branch           Branch?              @relation(fields: [branchId], references: [id], onDelete: SetNull)
   items            OrderItem[]
   history          OrderStatusHistory[]
   couponRedemption CouponRedemption?
   coinTransactions CoinTransaction[]
   notificationLogs NotificationLog[]
+  referral         Referral?
 
   @@index([userId, createdAt])
   @@index([status, createdAt])
   @@index([riderId])
+  @@index([branchId])
   @@index([createdAt])
 }
 
@@ -513,7 +522,8 @@ model Rider {
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
 
-  orders Order[]
+  orders   Order[]
+  branches BranchRider[]
 
   @@index([isActive])
 }
@@ -597,6 +607,34 @@ model NotificationLog {
   @@index([createdAt])
 }
 
+enum ReferralStatus {
+  PENDING
+  COMPLETED
+  REVERSED
+}
+
+model Referral {
+  id            String         @id @default(cuid())
+  referrerId    String
+  refereeId     String         @unique
+  status        ReferralStatus @default(PENDING)
+  orderId       String?        @unique
+  referrerCoins Int            @default(50)
+  refereeCoins  Int            @default(25)
+  completedAt   DateTime?
+  reversedAt    DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  referrer User   @relation("ReferrerReferrals", fields: [referrerId], references: [id], onDelete: Cascade)
+  referee  User   @relation("RefereeReferral", fields: [refereeId], references: [id], onDelete: Cascade)
+  order    Order? @relation(fields: [orderId], references: [id], onDelete: SetNull)
+
+  @@index([referrerId, status])
+  @@index([refereeId])
+  @@index([orderId])
+}
+
 model Settings {
   id                    Int      @id @default(1)
   storeName             String   @default("Haat")
@@ -611,5 +649,106 @@ model Settings {
   returnWindowDays      Int      @default(7)
   codEnabled            Boolean  @default(true)
   upiOnDeliveryEnabled  Boolean  @default(true)
+  referralEnabled       Boolean  @default(true)
+  referralReferrerCoins Int      @default(50)
+  referralRefereeCoins  Int      @default(25)
   updatedAt             DateTime @updatedAt
 }
+
+// ───────────────────────────── Branches ─────────────────────────────
+
+model Branch {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  address          String
+  city             String
+  state            String
+  pincode          String
+  /// Decimal degrees (WGS-84)
+  lat              Float
+  /// Decimal degrees (WGS-84)
+  lng              Float
+  deliveryRadiusKm Float    @default(5)
+  phone            String?
+  email            String?
+  isActive         Boolean  @default(true)
+  /// Operational on/off switch controlled by the admin.
+  isOnline         Boolean  @default(true)
+  /// Shown to the customer when isOnline = false, e.g. "Back at 9 AM".
+  offlineMessage   String?
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  branchStock BranchVariantStock[]
+  orders      Order[]
+  riders      BranchRider[]
+  statusLogs  BranchStatusLog[]
+
+  @@index([isActive, isOnline])
+  @@index([lat, lng])
+}
+
+model BranchVariantStock {
+  id                String   @id @default(cuid())
+  branchId          String
+  variantId         String
+  stock             Int      @default(0)
+  lowStockThreshold Int      @default(5)
+  /// Admin can hide a variant from this branch's catalog without removing stock.
+  isAvailable       Boolean  @default(true)
+  updatedAt         DateTime @updatedAt
+
+  branch         Branch          @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  variant        ProductVariant  @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  stockMovements BranchStockMovement[]
+
+  @@unique([branchId, variantId])
+  @@index([branchId, stock])
+  @@index([variantId])
+}
+
+model BranchStockMovement {
+  id            String            @id @default(cuid())
+  branchStockId String
+  /// Reuses the global enum: IN | OUT | SET | SALE | CANCEL | RETURN
+  type          StockMovementType
+  /// Signed delta; negative removes stock.
+  quantity      Int
+  stockAfter    Int
+  reason        String?
+  orderId       String?
+  createdById   String?
+  createdAt     DateTime          @default(now())
+
+  branchStock BranchVariantStock @relation(fields: [branchStockId], references: [id], onDelete: Cascade)
+
+  @@index([branchStockId, createdAt])
+  @@index([orderId])
+}
+
+/// Many-to-many: riders assigned to branches.
+model BranchRider {
+  branchId String
+  riderId  String
+
+  branch Branch @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  rider  Rider  @relation(fields: [riderId], references: [id], onDelete: Cascade)
+
+  @@id([branchId, riderId])
+}
+
+model BranchStatusLog {
+  id        String   @id @default(cuid())
+  branchId  String
+  isOnline  Boolean
+  reason    String?
+  actorId   String?
+  createdAt DateTime @default(now())
+
+  branch Branch @relation(fields: [branchId], references: [id], onDelete: Cascade)
+
+  @@index([branchId, createdAt])
+}
+

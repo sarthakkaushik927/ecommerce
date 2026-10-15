@@ -44,7 +44,21 @@ async function CustomerContent({ params }: { params: Promise<{ id: string }> }) 
             <Badge tone={customer.isBlocked ? "danger" : "success"}>{customer.isBlocked ? "Blocked" : "Active"}</Badge>
           </div>
           <p className="text-ink-500">
-            {customer.email} · {customer.phone ?? "no phone"} · joined {formatDate(customer.createdAt)}
+            {customer.email} · {customer.phone ?? "no phone"}
+            {customer.referralCode ? (
+              <>
+                {" "}· Referral Code: <span className="font-mono font-bold text-ink-900">{customer.referralCode}</span>
+              </>
+            ) : null}
+            {customer.referralReceived ? (
+              <>
+                {" "}· Referred by:{" "}
+                <Link href={`/customers/${customer.referralReceived.referrer.id}`} className="font-semibold text-brand-700 hover:underline">
+                  {customer.referralReceived.referrer.name}
+                </Link>
+              </>
+            ) : null}
+            {" "}· joined {formatDate(customer.createdAt)}
           </p>
         </div>
         <CustomerControls id={customer.id} isBlocked={customer.isBlocked} />
@@ -139,6 +153,38 @@ async function CustomerContent({ params }: { params: Promise<{ id: string }> }) 
           </Table>
         )}
       </Card>
+
+      {customer.referralsGiven && customer.referralsGiven.length > 0 ? (
+        <Card title={`Referrals (${customer.referralsGiven.length})`}>
+          <Table minWidth={500}>
+            <THead>
+              <Th>Referee</Th>
+              <Th>Date</Th>
+              <Th>Status</Th>
+              <Th align="right">Coins</Th>
+            </THead>
+            <tbody>
+              {customer.referralsGiven.map((ref) => (
+                <Tr key={ref.id}>
+                  <Td>
+                    <Link href={`/customers/${ref.referee.id}`} className="font-semibold hover:underline">
+                      {ref.referee.name}
+                    </Link>{" "}
+                    <span className="text-xs text-ink-500">({ref.referee.email})</span>
+                  </Td>
+                  <Td className="text-ink-700">{formatDateTime(ref.createdAt)}</Td>
+                  <Td>
+                    <Badge tone={ref.status === "COMPLETED" ? "success" : ref.status === "PENDING" ? "brand" : "danger"}>
+                      {titleCase(ref.status)}
+                    </Badge>
+                  </Td>
+                  <Td numeric>{ref.status === "COMPLETED" ? `+${ref.referrerCoins}` : "—"}</Td>
+                </Tr>
+              ))}
+            </tbody>
+          </Table>
+        </Card>
+      ) : null}
     </div>
   );
 }

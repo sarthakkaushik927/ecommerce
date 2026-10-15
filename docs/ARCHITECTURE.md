@@ -171,11 +171,34 @@ Browser ──(httpOnly cookies)──► Next.js server ──(Bearer JWT)─�
 - **State:**
   - Server state: TanStack Query, one hook file per domain in `src/hooks/`.
   - Session: Zustand `auth` store, persisted to `expo-secure-store`.
-  - Device preferences: recent searches, recently viewed and onboarding-seen, persisted to `AsyncStorage`.
+  - Device preferences: recent searches, recently viewed, onboarding-seen and the voice-search language, persisted to `AsyncStorage`.
 - **Auth gate:** the `useRequireAuth()` hook returns `guard(action)`. For guests it opens the login sheet instead of running the action, and it resumes the action after login.
 - **Navigation:**
   - `(tabs)` uses a custom `PillTabBar`: a floating, rounded pill where the active tab is a yellow capsule with a label.
   - Stack screens: product, listing, search, cart, checkout, orders, account sub-pages.
+- **Voice search** (`expo-speech-recognition`, on-device):
+
+```
+mic tap ─► useVoiceSearch()                      src/hooks/use-voice-search.ts
+             │  getPermissionsAsync()
+             │  └─ not granted & canAskAgain ─► requestPermissionsAsync()  (OS dialog)
+             │  └─ not granted & !canAskAgain ─► state "denied" (never re-prompts)
+             │  supportsOnDeviceRecognition / getSupportedLocales → installed model?
+             ▼
+           start({ lang, interimResults, requiresOnDeviceRecognition })
+             │  result(isFinal:false) ─► live partial text
+             ▼
+           result(isFinal:true) ─► normalizeTranscript() ─► setQ() ─► existing suggestions
+```
+
+  - `src/components/search/voice-search-modal.tsx` renders the states on the shared `Sheet`; the
+    mic pulse uses React Native's `Animated` (Reanimated is unused elsewhere in the app, and
+    avoiding it keeps the Jest setup free of worklet mocks).
+  - `src/lib/voice-query.ts` is pure: filler/punctuation stripping, the 100-char cap and the
+    supported-locale list. It mirrors `backend/src/modules/products/search-term.ts`.
+  - Chosen language persists in `AsyncStorage` through `deviceStore.voiceLocale`.
+  - **This makes the app a native build.** The speech module is not in Expo Go, so run
+    `npx expo run:android` or an EAS development build.
 
 ## 6. Data model (summary)
 

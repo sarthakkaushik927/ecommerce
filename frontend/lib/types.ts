@@ -282,9 +282,12 @@ export type CustomerRow = {
   totalSpent: number;
 };
 export type CustomerDetail = Omit<CustomerRow, "orderCount" | "totalSpent"> & {
+  referralCode?: string | null;
   addresses: (ShippingAddress & { id: string; type: string; isDefault: boolean })[];
   orders: { id: string; orderNumber: string; status: OrderStatus; payable: number; createdAt: string }[];
   coinTransactions: { id: string; type: string; amount: number; balanceAfter: number; note: string | null; createdAt: string }[];
+  referralReceived?: { referrer: { id: string; name: string; email: string; phone: string | null } } | null;
+  referralsGiven?: { id: string; status: string; referrerCoins: number; createdAt: string; referee: { id: string; name: string; email: string; phone: string | null } }[];
   stats: { deliveredOrders: number; totalSpent: number };
 };
 
@@ -348,4 +351,7 @@ export type Settings = {
   returnWindowDays: number;
   codEnabled: boolean;
   upiOnDeliveryEnabled: boolean;
+  referralEnabled: boolean;
+  referralReferrerCoins: number;
+  referralRefereeCoins: number;
 };

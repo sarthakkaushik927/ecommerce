@@ -26,6 +26,9 @@ export async function getPublicSettings() {
     returnWindowDays: s.returnWindowDays,
     codEnabled: s.codEnabled,
     upiOnDeliveryEnabled: s.upiOnDeliveryEnabled,
+    referralEnabled: s.referralEnabled,
+    referralReferrerCoins: s.referralReferrerCoins,
+    referralRefereeCoins: s.referralRefereeCoins,
   };
 }
 

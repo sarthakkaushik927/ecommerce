@@ -34,6 +34,14 @@
           "imageWidth": 160,
           "backgroundColor": "#FFC727"
         }
+      ],
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Haat uses the microphone so you can search for products by voice.",
+          "speechRecognitionPermission": "Haat uses speech recognition to turn what you say into a product search.",
+          "androidSpeechServicePackages": ["com.google.android.as", "com.google.android.googlequicksearchbox"]
+        }
       ]
     ],
     "scheme": "haat",

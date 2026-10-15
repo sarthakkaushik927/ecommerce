@@ -70,6 +70,18 @@ export async function getCustomer(id: string) {
         select: { id: true, orderNumber: true, status: true, payable: true, createdAt: true },
       },
       coinTransactions: { orderBy: { createdAt: "desc" }, take: 20 },
+      referralReceived: {
+        include: {
+          referrer: { select: { id: true, name: true, email: true, phone: true } },
+        },
+      },
+      referralsGiven: {
+        include: {
+          referee: { select: { id: true, name: true, email: true, phone: true } },
+        },
+        orderBy: { createdAt: "desc" },
+        take: 20,
+      },
     },
   });
   if (!user) throw AppError.notFound("Customer");

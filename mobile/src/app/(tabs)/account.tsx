@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { Bell, Coins, HelpCircle, LogOut, MapPin, Package, Tag, UserRound } from "lucide-react-native";
+import { Bell, Coins, HelpCircle, LogOut, MapPin, Package, Share2, Tag, UserRound } from "lucide-react-native";
 import { Alert, Linking, ScrollView, StyleSheet, View } from "react-native";
 import { TAB_BAR_CLEARANCE } from "@/components/navigation/pill-tab-bar";
 import { Button } from "@/components/ui/button";
@@ -67,6 +67,7 @@ export default function AccountScreen() {
             <MenuRow icon={Package} label="My orders" onPress={() => router.push("/orders")} />
             <MenuRow icon={MapPin} label="Saved addresses" onPress={() => router.push("/account/addresses")} />
             <MenuRow icon={Coins} label="Haat coins" hint={String(user.coinBalance)} onPress={() => router.push("/account/coins")} />
+            <MenuRow icon={Share2} label="Refer & earn" hint={user.referralCode ?? undefined} onPress={() => router.push("/account/profile")} />
             <MenuRow icon={Bell} label="Notifications" hint={unread.data ? `${unread.data} new` : undefined} onPress={() => router.push("/account/notifications")} />
             <MenuRow icon={UserRound} label="Edit profile" onPress={() => router.push("/account/profile")} />
           </MenuGroup>

@@ -6,7 +6,9 @@ import { signAccessToken } from "../../lib/jwt.js";
 import { hashPassword, verifyPassword } from "../../lib/password.js";
 import { toE164 } from "../../lib/phone.js";
 import { prisma } from "../../lib/prisma.js";
+import { ensureUniqueReferralCode } from "../../lib/referral-code.js";
 import { inBackground, sendPasswordResetOtp } from "../../services/notify/index.js";
+import { createReferralRecord, validateReferralAttribution } from "../referrals/referrals.service.js";
 import { toPublicUser } from "../users/user.presenter.js";
 import type { LoginInput, RegisterInput } from "./auth.schema.js";
 
@@ -45,9 +47,40 @@ export async function register(input: RegisterInput, userAgent?: string) {
     );
   }
 
-  const user = await prisma.user.create({
-    data: { name: input.name, email: input.email, phone, passwordHash: await hashPassword(input.password) },
+  const attribution = input.referralCode
+    ? await validateReferralAttribution(prisma, {
+        referralCode: input.referralCode,
+        refereeEmail: input.email,
+        refereePhone: phone,
+      })
+    : null;
+
+  const referralCode = await ensureUniqueReferralCode(prisma);
+  const passwordHash = await hashPassword(input.password);
+
+  const user = await prisma.$transaction(async (tx) => {
+    const newUser = await tx.user.create({
+      data: {
+        name: input.name,
+        email: input.email,
+        phone,
+        passwordHash,
+        referralCode,
+      },
+    });
+
+    if (attribution) {
+      await createReferralRecord(tx, {
+        referrerId: attribution.referrer.id,
+        refereeId: newUser.id,
+        referrerCoins: attribution.settings.referralReferrerCoins,
+        refereeCoins: attribution.settings.referralRefereeCoins,
+      });
+    }
+
+    return newUser;
   });
+
   return issueSession(user, userAgent);
 }
 
@@ -102,8 +135,12 @@ export async function logout(refreshToken: string) {
 }
 
 export async function me(userId: string) {
-  const user = await prisma.user.findUnique({ where: { id: userId } });
+  let user = await prisma.user.findUnique({ where: { id: userId } });
   if (!user) throw AppError.unauthorized();
+  if (!user.referralCode) {
+    const referralCode = await ensureUniqueReferralCode(prisma);
+    user = await prisma.user.update({ where: { id: userId }, data: { referralCode } });
+  }
   return toPublicUser(user);
 }
 

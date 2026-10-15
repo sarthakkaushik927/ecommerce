@@ -16,8 +16,10 @@ export default defineConfig({
     hookTimeout: 120_000,
     env: {
       NODE_ENV: "test",
-      DATABASE_URL: testDatabaseUrl,
-      DIRECT_URL: testDatabaseUrl,
+      DATABASE_URL: testDatabaseUrl || "postgresql://mock:mock@localhost:5432/mock",
+      DIRECT_URL: testDatabaseUrl || "postgresql://mock:mock@localhost:5432/mock",
+      JWT_ACCESS_SECRET: "test-access-secret-minimum-32-characters-long",
+      JWT_REFRESH_SECRET: "test-refresh-secret-minimum-32-characters-long",
       SMTP_HOST: "",
       WHATSAPP_PROVIDER: "log",
     },

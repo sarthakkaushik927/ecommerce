@@ -18,11 +18,16 @@ export function SettingsForm({ settings }: { settings: Settings }) {
     coinEarnPer100: String(settings.coinEarnPer100),
     coinMaxRedeemPercent: String(settings.coinMaxRedeemPercent),
     returnWindowDays: String(settings.returnWindowDays),
+    referralEnabled: settings.referralEnabled ?? true,
+    referralReferrerCoins: String(settings.referralReferrerCoins ?? 50),
+    referralRefereeCoins: String(settings.referralRefereeCoins ?? 25),
   });
   const { pending, fieldErrors, run } = useAction();
   type Form = typeof form;
   const patch = (change: Partial<Form>) => setForm((current) => ({ ...current, ...change }));
   const text = (key: keyof Form) => ({ id: `s-${key}`, value: String(form[key]), onChange: (event: { target: { value: string } }) => patch({ [key]: event.target.value }) });
+
+  const totalReferralCoins = (Number(form.referralReferrerCoins) || 0) + (Number(form.referralRefereeCoins) || 0);
 
   function submit() {
     run(
@@ -34,6 +39,9 @@ export function SettingsForm({ settings }: { settings: Settings }) {
           coinEarnPer100: Number(form.coinEarnPer100) || 0,
           coinMaxRedeemPercent: Number(form.coinMaxRedeemPercent) || 0,
           returnWindowDays: Number(form.returnWindowDays) || 0,
+          referralEnabled: Boolean(form.referralEnabled),
+          referralReferrerCoins: Number(form.referralReferrerCoins) || 0,
+          referralRefereeCoins: Number(form.referralRefereeCoins) || 0,
         }),
       { success: "Settings saved" },
     );
@@ -96,6 +104,58 @@ export function SettingsForm({ settings }: { settings: Settings }) {
           </Field>
           <Switch checked={form.codEnabled} onChange={(codEnabled) => patch({ codEnabled })} label="Cash on delivery" />
           <Switch checked={form.upiOnDeliveryEnabled} onChange={(upiOnDeliveryEnabled) => patch({ upiOnDeliveryEnabled })} label="UPI on delivery" />
+        </div>
+      </Card>
+
+      <Card title="Referral program">
+        <div className="grid gap-4 p-5 sm:grid-cols-2">
+          <div className="sm:col-span-2">
+            <Switch
+              checked={form.referralEnabled}
+              onChange={(referralEnabled) => patch({ referralEnabled })}
+              label="Referral program active"
+            />
+          </div>
+          <Field
+            label="Referrer coin bonus"
+            htmlFor="s-referralReferrerCoins"
+            hint="Coins awarded to referrer upon referee's 1st delivery"
+            error={fieldErrors.referralReferrerCoins}
+          >
+            <Input {...text("referralReferrerCoins")} inputMode="numeric" />
+          </Field>
+          <Field
+            label="Referee coin bonus"
+            htmlFor="s-referralRefereeCoins"
+            hint="Coins awarded to new customer on 1st delivery"
+            error={fieldErrors.referralRefereeCoins}
+          >
+            <Input {...text("referralRefereeCoins")} inputMode="numeric" />
+          </Field>
+          <Field
+            label="Total referral bonus (coins)"
+            htmlFor="s-totalReferralCoins"
+            hint="Auto-distributes: 2/3 to referrer, 1/3 to referee"
+          >
+            <Input
+              id="s-totalReferralCoins"
+              value={String(totalReferralCoins)}
+              onChange={(e) => {
+                const total = Math.max(0, Number(e.target.value) || 0);
+                const ref = Math.round((total * 2) / 3);
+                patch({
+                  referralReferrerCoins: String(ref),
+                  referralRefereeCoins: String(total - ref),
+                });
+              }}
+              inputMode="numeric"
+            />
+          </Field>
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-900 sm:col-span-2">
+            Each successful referral awards <strong>{totalReferralCoins} coins</strong> (₹{totalReferralCoins}):{" "}
+            <strong>{form.referralReferrerCoins} coins</strong> to referrer and{" "}
+            <strong>{form.referralRefereeCoins} coins</strong> to referee.
+          </div>
         </div>
       </Card>
 

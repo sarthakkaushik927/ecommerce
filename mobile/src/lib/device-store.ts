@@ -1,7 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /** Device-only preferences; nothing here is account data. */
-const KEYS = { onboarded: "haat.onboarded", recentSearches: "haat.recentSearches", recentlyViewed: "haat.recentlyViewed" } as const;
+const KEYS = {
+  onboarded: "haat.onboarded",
+  recentSearches: "haat.recentSearches",
+  recentlyViewed: "haat.recentlyViewed",
+  voiceLocale: "haat.voiceLocale",
+} as const;
 const MAX_RECENT = 10;
 
 async function readList(key: string): Promise<string[]> {
@@ -27,4 +32,13 @@ export const deviceStore = {
   clearRecentSearches: () => AsyncStorage.removeItem(KEYS.recentSearches),
   recentlyViewed: () => readList(KEYS.recentlyViewed),
   addRecentlyViewed: (productId: string) => pushUnique(KEYS.recentlyViewed, productId),
+  /** Returned raw; the caller validates it, so this layer stays free of feature types. */
+  voiceLocale: async (): Promise<string | null> => {
+    try {
+      return await AsyncStorage.getItem(KEYS.voiceLocale);
+    } catch {
+      return null;
+    }
+  },
+  setVoiceLocale: (locale: string) => AsyncStorage.setItem(KEYS.voiceLocale, locale),
 };

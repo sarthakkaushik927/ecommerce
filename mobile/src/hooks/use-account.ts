@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { useAuthStore } from "@/lib/auth-store";
-import type { Address, AddressInput, AppNotification, CartCoupon, Coins, Offer, User } from "@/lib/types";
+import type { Address, AddressInput, AppNotification, CartCoupon, Coins, Offer, ReferralSummary, User } from "@/lib/types";
 
 const useSignedIn = () => useAuthStore((state) => state.user !== null);
 
@@ -79,3 +79,13 @@ export function useMarkAllRead() {
   const queryClient = useQueryClient();
   return useMutation({ mutationFn: () => api.post("/notifications/read-all"), onSuccess: () => queryClient.invalidateQueries({ queryKey: ["notifications"] }) });
 }
+
+export function useReferralSummary() {
+  const signedIn = useSignedIn();
+  return useQuery({
+    queryKey: ["referrals", "me"],
+    enabled: signedIn,
+    queryFn: () => api.get<ReferralSummary>("/profile/referrals"),
+  });
+}
+

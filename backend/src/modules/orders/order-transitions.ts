@@ -44,6 +44,56 @@ async function releaseCoupon(db: Db, order: OrderWithItems) {
   if (count > 0) await db.coupon.update({ where: { id: order.couponId }, data: { usedCount: { decrement: 1 } } });
 }
 
+async function reverseReferralReward(db: Db, order: OrderWithItems) {
+  const referral = await db.referral.findFirst({
+    where: { orderId: order.id, status: "COMPLETED" },
+  });
+  if (!referral) return;
+
+  if (referral.referrerCoins > 0) {
+    const referrer = await db.user.findUnique({
+      where: { id: referral.referrerId },
+      select: { coinBalance: true },
+    });
+    if (referrer) {
+      const reversible = Math.min(referral.referrerCoins, referrer.coinBalance);
+      if (reversible > 0) {
+        await changeCoins(db, {
+          userId: referral.referrerId,
+          amount: -reversible,
+          type: "REVERSE",
+          orderId: order.id,
+          note: `Referral reward reversed for order ${order.orderNumber}`,
+        });
+      }
+    }
+  }
+
+  if (referral.refereeCoins > 0) {
+    const referee = await db.user.findUnique({
+      where: { id: referral.refereeId },
+      select: { coinBalance: true },
+    });
+    if (referee) {
+      const reversible = Math.min(referral.refereeCoins, referee.coinBalance);
+      if (reversible > 0) {
+        await changeCoins(db, {
+          userId: referral.refereeId,
+          amount: -reversible,
+          type: "REVERSE",
+          orderId: order.id,
+          note: `Referral bonus reversed for order ${order.orderNumber}`,
+        });
+      }
+    }
+  }
+
+  await db.referral.update({
+    where: { id: referral.id },
+    data: { status: "REVERSED", reversedAt: new Date() },
+  });
+}
+
 /** Side effects that must commit together with the status change. */
 async function applySideEffects(db: Db, order: OrderWithItems, to: OrderStatus, actor: Actor, reason?: string) {
   const data: Prisma.OrderUpdateManyMutationInput = {};
@@ -53,11 +103,12 @@ async function applySideEffects(db: Db, order: OrderWithItems, to: OrderStatus, 
       await restock(db, order, "CANCEL", actor.id);
       await refundRedeemedCoins(db, order);
       await releaseCoupon(db, order);
+      await reverseReferralReward(db, order);
       data.cancelledAt = new Date();
       data.cancelReason = reason ?? null;
       break;
 
-    case "DELIVERED":
+    case "DELIVERED": {
       data.deliveredAt = new Date();
       data.paymentStatus = "PAID";
       if (order.coinsToEarn > 0) {
@@ -70,7 +121,46 @@ async function applySideEffects(db: Db, order: OrderWithItems, to: OrderStatus, 
         });
         data.coinsEarned = order.coinsToEarn;
       }
+
+      // Referral reward trigger: strictly on referee's first DELIVERED order
+      const priorDelivered = await db.order.count({
+        where: { userId: order.userId, status: "DELIVERED", id: { not: order.id } },
+      });
+      if (priorDelivered === 0) {
+        const referral = await db.referral.findUnique({
+          where: { refereeId: order.userId },
+        });
+        if (referral && referral.status === "PENDING") {
+          if (referral.referrerCoins > 0) {
+            await changeCoins(db, {
+              userId: referral.referrerId,
+              amount: referral.referrerCoins,
+              type: "BONUS",
+              orderId: order.id,
+              note: `Referral reward for referring customer`,
+            });
+          }
+          if (referral.refereeCoins > 0) {
+            await changeCoins(db, {
+              userId: referral.refereeId,
+              amount: referral.refereeCoins,
+              type: "BONUS",
+              orderId: order.id,
+              note: `Welcome referral bonus on first order`,
+            });
+          }
+          await db.referral.update({
+            where: { id: referral.id },
+            data: {
+              status: "COMPLETED",
+              orderId: order.id,
+              completedAt: new Date(),
+            },
+          });
+        }
+      }
       break;
+    }
 
     case "RETURN_REQUESTED":
       data.returnReason = reason ?? null;
@@ -93,6 +183,7 @@ async function applySideEffects(db: Db, order: OrderWithItems, to: OrderStatus, 
           });
         }
       }
+      await reverseReferralReward(db, order);
       data.paymentStatus = order.paymentStatus === "PAID" ? "REFUNDED" : order.paymentStatus;
       break;
     }

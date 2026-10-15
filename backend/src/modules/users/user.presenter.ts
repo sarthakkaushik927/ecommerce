@@ -9,6 +9,7 @@ export function toPublicUser(user: User) {
     role: user.role,
     avatarUrl: user.avatarUrl,
     coinBalance: user.coinBalance,
+    referralCode: user.referralCode,
     createdAt: user.createdAt,
   };
 }

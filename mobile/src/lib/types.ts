@@ -10,6 +10,7 @@ export type User = {
   role: Role;
   avatarUrl: string | null;
   coinBalance: number;
+  referralCode?: string | null;
   createdAt: string;
 };
 
@@ -226,4 +227,17 @@ export type StoreSettings = {
   returnWindowDays: number;
   codEnabled: boolean;
   upiOnDeliveryEnabled: boolean;
+  referralEnabled?: boolean;
+  referralReferrerCoins?: number;
+  referralRefereeCoins?: number;
+};
+
+export type ReferralSummary = {
+  referralCode: string;
+  completedCount: number;
+  pendingCount: number;
+  totalCoinsEarned: number;
+  referrerBonus: number;
+  refereeBonus: number;
+  enabled: boolean;
 };

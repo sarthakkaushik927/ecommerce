@@ -1,7 +1,10 @@
+import dns from "node:dns";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { env } from "../config/env.js";
 import { RetryingPool } from "./db-pool.js";
 import { PrismaClient, type Prisma } from "../generated/prisma/client.js";
+
+dns.setDefaultResultOrder("ipv4first");
 
 // Honour `?schema=` in the URL (used to isolate the integration-test schema).
 const schema = new URL(env.DATABASE_URL).searchParams.get("schema") ?? undefined;

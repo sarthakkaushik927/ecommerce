@@ -4,7 +4,14 @@ import type { SendResult, WhatsAppProvider } from "./types.js";
 
 const REQUEST_TIMEOUT_MS = 10_000;
 
-async function readError(response: Response): Promise<string> {
+interface FetchResponse {
+  ok: boolean;
+  status: number;
+  text(): Promise<string>;
+  json(): Promise<unknown>;
+}
+
+async function readError(response: FetchResponse): Promise<string> {
   const body = await response.text().catch(() => "");
   return `HTTP ${response.status}: ${body.slice(0, 300)}`;
 }
@@ -19,7 +26,7 @@ class MetaWhatsAppProvider implements WhatsAppProvider {
   ) {}
 
   async send(to: string, body: string): Promise<SendResult> {
-    const response = await fetch(`https://graph.facebook.com/v21.0/${this.phoneNumberId}/messages`, {
+    const response = (await fetch(`https://graph.facebook.com/v21.0/${this.phoneNumberId}/messages`, {
       method: "POST",
       headers: { Authorization: `Bearer ${this.token}`, "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -29,7 +36,7 @@ class MetaWhatsAppProvider implements WhatsAppProvider {
         text: { body, preview_url: false },
       }),
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-    });
+    })) as unknown as FetchResponse;
     if (!response.ok) return { status: "FAILED", error: await readError(response) };
     const json = (await response.json()) as { messages?: { id: string }[] };
     return { status: "SENT", providerRef: json.messages?.[0]?.id };
@@ -52,7 +59,7 @@ class TwilioWhatsAppProvider implements WhatsAppProvider {
       Body: body,
     });
     const auth = Buffer.from(`${this.accountSid}:${this.authToken}`).toString("base64");
-    const response = await fetch(
+    const response = (await fetch(
       `https://api.twilio.com/2010-04-01/Accounts/${this.accountSid}/Messages.json`,
       {
         method: "POST",
@@ -60,7 +67,7 @@ class TwilioWhatsAppProvider implements WhatsAppProvider {
         body: form,
         signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
       },
-    );
+    )) as unknown as FetchResponse;
     if (!response.ok) return { status: "FAILED", error: await readError(response) };
     const json = (await response.json()) as { sid?: string };
     return { status: "SENT", providerRef: json.sid };

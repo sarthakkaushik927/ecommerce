@@ -4,10 +4,12 @@
  *
  * Run: pnpm db:seed
  */
+import dns from "node:dns";
 import { readFile } from "node:fs/promises";
-import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
-import { PrismaClient } from "../src/generated/prisma/client.js";
+import { prisma } from "../src/lib/prisma.js";
+
+dns.setDefaultResultOrder("ipv4first");
 
 type SeedVariant = { sku: string; label: string; attributes: Record<string, string>; mrp: number; price: number; stock: number };
 type SeedProduct = {
@@ -25,10 +27,6 @@ type SeedProduct = {
   reviews: { rating: number; comment: string; name: string; email: string; date: string }[];
 };
 type SeedCategory = { name: string; slug: string; imageUrl: string | null; children: Omit<SeedCategory, "children">[] };
-
-const databaseUrl = process.env.DATABASE_URL;
-if (!databaseUrl) throw new Error("DATABASE_URL is not set");
-const prisma = new PrismaClient({ adapter: new PrismaPg({ connectionString: databaseUrl }) });
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -66,13 +64,13 @@ async function seedCategories(categories: SeedCategory[]) {
   for (const [index, parent] of categories.entries()) {
     const created = await prisma.category.upsert({
       where: { slug: parent.slug },
-      update: {},
+      update: { sortOrder: index },
       create: { name: parent.name, slug: parent.slug, imageUrl: parent.imageUrl, sortOrder: index },
     });
     for (const [childIndex, child] of parent.children.entries()) {
       const sub = await prisma.category.upsert({
         where: { slug: child.slug },
-        update: {},
+        update: { sortOrder: childIndex },
         create: { name: child.name, slug: child.slug, imageUrl: child.imageUrl, sortOrder: childIndex, parentId: created.id },
       });
       ids.set(child.slug, sub.id);
@@ -90,15 +88,50 @@ async function seedBrands(products: SeedProduct[]) {
   return new Map(brands.map((brand) => [brand.name, brand.id]));
 }
 
+const GROCERY_CATEGORIES = new Set([
+  "vegetables", "fruits", "dairy-bakery", "atta-rice-dal", "oil-masala", "snacks-beverages", "daily-essentials", "grocery"
+]);
+const MEDICINE_CATEGORIES = new Set([
+  "pain-relief", "cold-cough-fever", "digestive-care", "vitamins-supplements", "first-aid", "diabetes-care", "medicines"
+]);
+
 async function seedProducts(products: SeedProduct[], categoryIds: Map<string, string>, brandIds: Map<string, string>) {
   const existing = new Set((await prisma.product.findMany({ select: { slug: true } })).map((product) => product.slug));
   let created = 0;
+  let updated = 0;
 
   for (const [index, product] of products.entries()) {
-    if (existing.has(product.slug)) continue;
+    const isGrocery = GROCERY_CATEGORIES.has(product.category);
+    const isMedicine = MEDICINE_CATEGORIES.has(product.category);
+    const isPreferred = isGrocery || isMedicine;
+
+    const soldCount = isGrocery
+      ? 800 + ((index * 23) % 450)
+      : isMedicine
+        ? 650 + ((index * 19) % 350)
+        : (index * 13) % 250;
+
+    const createdAt = isPreferred
+      ? new Date(Date.now() - ((index * 2) % 15) * DAY_MS)
+      : new Date(Date.now() - (45 + ((index * 7) % 45)) * DAY_MS);
+
+    if (existing.has(product.slug)) {
+      if (isPreferred) {
+        await prisma.product.update({
+          where: { slug: product.slug },
+          data: {
+            isFeatured: true,
+            soldCount,
+            createdAt,
+          },
+        });
+        updated += 1;
+      }
+      continue;
+    }
+
     const categoryId = categoryIds.get(product.category);
     if (!categoryId) continue;
-    // The source data repeats a few titles; the first one wins.
     existing.add(product.slug);
 
     const cheapest = [...product.variants].sort((a, b) => a.price - b.price)[0]!;
@@ -112,13 +145,12 @@ async function seedProducts(products: SeedProduct[], categoryIds: Map<string, st
         tags: product.tags,
         categoryId,
         brandId: product.brand ? brandIds.get(product.brand) : undefined,
-        isFeatured: product.isFeatured,
+        isFeatured: isPreferred ? true : product.isFeatured,
         minPrice: cheapest.price,
         minMrp: cheapest.mrp,
         discountPercent: Math.round(((cheapest.mrp - cheapest.price) / cheapest.mrp) * 100),
-        // Deterministic spread so "popular" and "new arrivals" have meaningful ordering.
-        soldCount: (index * 37) % 480,
-        createdAt: new Date(Date.now() - ((index * 7) % 90) * DAY_MS),
+        soldCount,
+        createdAt,
         images: { create: product.images.map((url, sortOrder) => ({ url, alt: product.name, sortOrder })) },
         variants: {
           create: product.variants.map((variant, sortOrder) => ({ ...variant, sortOrder })),
@@ -133,7 +165,7 @@ async function seedProducts(products: SeedProduct[], categoryIds: Map<string, st
     });
     created += 1;
   }
-  console.log(`✓ products (${created} new)`);
+  console.log(`✓ products (${created} new, ${updated} preferred updated)`);
 }
 
 async function seedReviews(products: SeedProduct[]) {
@@ -184,20 +216,77 @@ async function seedCoupons() {
 }
 
 async function seedBanners(categories: SeedCategory[]) {
-  if ((await prisma.banner.count()) > 0) return console.log("• banners exist");
   const pick = (slug: string) => categories.find((category) => category.slug === slug);
-  const electronics = pick("mobiles-electronics");
-  const fashion = pick("fashion");
   const grocery = pick("grocery");
+  const medicines = pick("medicines");
+  const vegetables = pick("grocery")?.children.find((c) => c.slug === "vegetables");
+
+  await prisma.banner.deleteMany({});
   await prisma.banner.createMany({
     data: [
-      { title: "Big Savings Days", subtitle: "Up to 60% off on top brands", imageUrl: electronics?.imageUrl ?? "", linkType: "CATEGORY", linkValue: electronics?.slug, sortOrder: 0 },
-      { title: "Fresh Fashion Drop", subtitle: "New styles, every week", imageUrl: fashion?.imageUrl ?? "", linkType: "CATEGORY", linkValue: fashion?.slug, sortOrder: 1 },
-      { title: "Daily Essentials", subtitle: "Groceries delivered by your local store", imageUrl: grocery?.imageUrl ?? "", linkType: "CATEGORY", linkValue: grocery?.slug, sortOrder: 2 },
-      { title: "Use WELCOME100", subtitle: "₹100 off your first order", imageUrl: electronics?.imageUrl ?? "", linkType: "NONE", placement: "HOME_STRIP", sortOrder: 0 },
+      {
+        title: "Daily Essentials & Fresh Groceries",
+        subtitle: "Delivered fresh from local mandi in minutes",
+        imageUrl: grocery?.imageUrl ?? "https://cdn.dummyjson.com/product-images/groceries/apple/1.webp",
+        linkType: "CATEGORY",
+        linkValue: "grocery",
+        placement: "HOME_CAROUSEL",
+        sortOrder: 0,
+      },
+      {
+        title: "Medicines & Daily Healthcare",
+        subtitle: "Flat 20% off on genuine healthcare & wellness",
+        imageUrl: medicines?.imageUrl ?? "https://placehold.co/600x600/FFC727/1C1A14/png?text=Medicines",
+        linkType: "CATEGORY",
+        linkValue: "medicines",
+        placement: "HOME_CAROUSEL",
+        sortOrder: 1,
+      },
+      {
+        title: "Farm-Fresh Vegetables",
+        subtitle: "Hand-picked, clean & sorted daily",
+        imageUrl: vegetables?.imageUrl ?? "https://placehold.co/600x600/FFC727/1C1A14/png?text=Vegetables",
+        linkType: "CATEGORY",
+        linkValue: "vegetables",
+        placement: "HOME_CAROUSEL",
+        sortOrder: 2,
+      },
+      {
+        title: "Use WELCOME100",
+        subtitle: "₹100 off your first grocery order",
+        imageUrl: grocery?.imageUrl ?? "https://cdn.dummyjson.com/product-images/groceries/apple/1.webp",
+        linkType: "NONE",
+        placement: "HOME_STRIP",
+        sortOrder: 0,
+      },
     ],
   });
-  console.log("✓ banners");
+  console.log("✓ banners (groceries & medicines prioritized)");
+}
+
+async function seedSearchTerms() {
+  const terms = [
+    { term: "tomato", count: 120 },
+    { term: "potato", count: 110 },
+    { term: "onion", count: 105 },
+    { term: "milk", count: 95 },
+    { term: "atta", count: 90 },
+    { term: "paneer", count: 85 },
+    { term: "paracetamol", count: 80 },
+    { term: "cough syrup", count: 75 },
+    { term: "dettol", count: 70 },
+    { term: "fresh vegetables", count: 65 },
+    { term: "fruits", count: 60 },
+    { term: "ghee", count: 55 },
+  ];
+  for (const t of terms) {
+    await prisma.searchTerm.upsert({
+      where: { term: t.term },
+      update: { count: t.count },
+      create: { term: t.term, count: t.count },
+    });
+  }
+  console.log("✓ search terms");
 }
 
 async function seedRiders() {
@@ -210,6 +299,111 @@ async function seedRiders() {
     skipDuplicates: true,
   });
   console.log("✓ riders");
+}
+
+/**
+ * Seeds 3 branches with Bengaluru lat/lng and creates BranchVariantStock
+ * rows for every active variant so each branch has independently tracked stock.
+ * Idempotent: skips existing branches and existing BranchVariantStock rows.
+ */
+async function seedBranches() {
+  const branchDefs = [
+    {
+      name: "Haat Main Branch",
+      slug: "main",
+      address: "12, MG Road, Brigade Road Junction",
+      city: "Bengaluru",
+      state: "Karnataka",
+      pincode: "560001",
+      lat: 12.9716,
+      lng: 77.5946,
+      deliveryRadiusKm: 8,
+      phone: "+918011110001",
+      email: "main@haat.local",
+      isOnline: true,
+      sortOrder: 0,
+    },
+    {
+      name: "Haat North Branch",
+      slug: "north",
+      address: "45, Hebbal Flyover Road, Hebbal",
+      city: "Bengaluru",
+      state: "Karnataka",
+      pincode: "560024",
+      lat: 13.035,
+      lng: 77.5972,
+      deliveryRadiusKm: 6,
+      phone: "+918011110002",
+      email: "north@haat.local",
+      isOnline: true,
+      sortOrder: 1,
+    },
+    {
+      name: "Haat South Branch",
+      slug: "south",
+      address: "78, Banashankari 2nd Stage",
+      city: "Bengaluru",
+      state: "Karnataka",
+      pincode: "560070",
+      lat: 12.9352,
+      lng: 77.5552,
+      deliveryRadiusKm: 6,
+      phone: "+918011110003",
+      email: "south@haat.local",
+      isOnline: true,
+      sortOrder: 2,
+    },
+  ];
+
+  const branches: { id: string }[] = [];
+  for (const def of branchDefs) {
+    const branch = await prisma.branch.upsert({
+      where: { slug: def.slug },
+      update: {},
+      create: def,
+    });
+    branches.push(branch);
+  }
+  console.log(`✓ branches (${branches.length})`);
+
+  // Create BranchVariantStock for every active variant in every branch.
+  // Use random stock between 20-200 for seeding realism.
+  const variants = await prisma.productVariant.findMany({
+    where: { isActive: true },
+    select: { id: true },
+  });
+
+  let stockRows = 0;
+  for (const branch of branches) {
+    for (const variant of variants) {
+      const stock = Math.floor(Math.random() * 181) + 20; // 20–200
+      await prisma.branchVariantStock.upsert({
+        where: { branchId_variantId: { branchId: branch.id, variantId: variant.id } },
+        update: {},
+        create: {
+          branchId: branch.id,
+          variantId: variant.id,
+          stock,
+          lowStockThreshold: 5,
+          isAvailable: true,
+        },
+      });
+      stockRows++;
+    }
+  }
+  console.log(`✓ branch variant stock (${stockRows} rows across ${branches.length} branches)`);
+
+  // Assign all seeded riders to the Main branch.
+  const riders = await prisma.rider.findMany({ select: { id: true } });
+  const mainBranch = branches[0]!;
+  for (const rider of riders) {
+    await prisma.branchRider.upsert({
+      where: { branchId_riderId: { branchId: mainBranch.id, riderId: rider.id } },
+      update: {},
+      create: { branchId: mainBranch.id, riderId: rider.id },
+    });
+  }
+  console.log(`✓ branch riders (${riders.length} riders → Main branch)`);
 }
 
 async function main() {
@@ -225,7 +419,9 @@ async function main() {
   await seedReviews(catalog.products);
   await seedCoupons();
   await seedBanners(catalog.categories);
+  await seedSearchTerms();
   await seedRiders();
+  await seedBranches();
 }
 
 main()
@@ -234,3 +430,4 @@ main()
     process.exitCode = 1;
   })
   .finally(() => prisma.$disconnect());
+

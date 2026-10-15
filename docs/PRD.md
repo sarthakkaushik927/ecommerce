@@ -46,7 +46,7 @@ The shopping experience follows Flipkart: browse, search, filter, wishlist, cart
 | Navigation | Floating bottom pill tab bar: Home, Categories, Wishlist, Cart (badge), Account |
 | Categories | Parent categories in a left rail, sub-categories in a grid |
 | Listing | Infinite scroll grid. Filters: brand, price range, rating, discount, in stock. Sort: relevance, popularity, price ↑/↓, newest, discount |
-| Search | Live suggestions, recent searches, trending searches, results reuse the listing screen |
+| Search | Live suggestions, recent searches, trending searches, **voice search (on-device)**, results reuse the listing screen |
 | Product | Image gallery, variant selector (size/colour), MRP struck through, price, % off, rating summary, offers and available coupons, coins you will earn, highlights/specs, delivery info, reviews, similar products, sticky Add to cart / Buy now |
 | Wishlist | Grid, move to cart, remove |
 | Cart | Line items with qty stepper, save for later (wishlist), coupon input and list, coins toggle, price details card (MRP, discount, coupon, coins, delivery, total, "You save ₹X") |
@@ -82,6 +82,12 @@ The shopping experience follows Flipkart: browse, search, filter, wishlist, cart
   - Earned on delivery: `floor(payable / 100) * earnRate`. The default is 2 coins per ₹100.
   - Redeemed at checkout: 1 coin = ₹1, capped at `maxRedeemPercent` of the post-coupon amount. The default cap is 20%.
   - Every coin change is a ledger entry.
+- **Referral system:**
+  - Unique uppercase alphanumeric code (e.g. `HAAT4X8K`) assigned to each customer upon account creation or migration.
+  - Attribution during registration or before first order. Self-referrals (same user ID, email, or phone) and cyclic referrals (A refers B and B refers A) rejected with `400 BAD_REQUEST`. Max 1 referrer per referee, immutable once applied.
+  - Trigger: Strictly on referee's first `DELIVERED` order. Referrer receives ₹50 worth of coins (`BONUS`), referee receives ₹25 worth of coins (`BONUS`).
+  - Reversal: If the triggering order is marked `CANCELLED` or `RETURNED`, compensating ledger entries (`REVERSE`) reverse pending/awarded coins without driving balances negative.
+  - Admin settings: Toggle active/inactive, editable referrer bonus, referee bonus, and total referral coins.
 - **Delivery fee:** a flat fee, free when the post-discount amount is at or above the threshold. Defaults are ₹40, free from ₹499.
 - **Order of operations:** subtotal(price) → coupon → coins → delivery fee → payable.
 - All money is stored as **integer paise**.
@@ -110,6 +116,29 @@ When the admin assigns a rider:
 
 If WhatsApp is not configured, the dashboard shows one-tap `wa.me` links with the message pre-filled.
 
+### 5.6 Voice search
+
+The customer taps a microphone inside the product search bar (on the home search bar and on the
+search screen). Speech is transcribed **on the device** by the OS-native engine — Android
+`SpeechRecognizer` via Google's recognizer, iOS `SFSpeechRecognizer`. No audio is recorded,
+uploaded or stored, and recognition works without a connection once the language model is present.
+
+| Step | Behaviour |
+|---|---|
+| Permission check | The app reads the current OS permission state before doing anything else (`RECORD_AUDIO` on Android; microphone + speech recognition on iOS) |
+| OS prompt | If permission has never been refused, the native system dialog asks for microphone and speech-recognition access |
+| Granted | A sheet shows a pulsing mic and the live partial transcript as the customer speaks |
+| Denied | The sheet cancels gracefully and shows an inline alert with an **Open Settings** action plus **Type instead**. Once the OS has blocked the permission the app never prompts again, because the dialog would not appear |
+| No on-device model | The sheet explains the one-time download and, on Android, offers to start it |
+| Result | The cleaned transcript fills the search box and the normal live suggestions appear. Nothing is submitted automatically, so a mis-heard word can be corrected before searching |
+
+- **Languages:** English (`en-IN`) and Hindi (`hi-IN`), switchable in the sheet and remembered per device.
+- **Transcript cleanup:** spoken filler ("show me", "search for", "dikhao", trailing "please") and
+  sentence punctuation are stripped, and the query is capped at the API's 100-character limit, so
+  what is searched matches product, brand and category names.
+- **Trending stays clean:** spoken sentences are served as searches but are not recorded as
+  trending terms.
+
 ## 6. Non-functional requirements
 
 - **Security:**
@@ -121,7 +150,8 @@ If WhatsApp is not configured, the dashboard shows one-tap `wa.me` links with th
 - **Performance:** paginated lists, indexed search columns, product lists under 300 ms p95 on Neon.
 - **Reliability:** order placement is atomic (single DB transaction). A failed notification never fails an order operation; failures are logged and can be retried.
 - **Accessibility:** touch targets of at least 44 px, sufficient contrast (dark ink on yellow, never white on yellow for body text).
-- **Localisation:** INR currency formatting (`en-IN`), Indian phone numbers.
+- **Localisation:** INR currency formatting (`en-IN`), Indian phone numbers, voice search in `en-IN` and `hi-IN`.
+- **Privacy:** speech recognition is on-device; audio never leaves the handset and is never persisted.
 
 ## 7. Success metrics
 

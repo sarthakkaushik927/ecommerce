@@ -17,9 +17,11 @@ User ─┬─< RefreshToken            Category ─< Category (2-level tree)
       ├─< CoinTransaction >── Order?
       ├─< CouponRedemption >── Coupon, Order (1:1)
       ├─< Notification
+      ├─< Referral (as referrer / referee) >── Order?
       └─< Order ─┬─< OrderItem (price snapshot) >── ProductVariant, Product
                  ├─< OrderStatusHistory
                  ├─< NotificationLog
+                 ├─< Referral?
                  └── Rider?
 Settings (single row, id = 1)    Banner    SearchTerm
 ```
@@ -28,7 +30,7 @@ Settings (single row, id = 1)    Banner    SearchTerm
 
 | Model | Purpose | Notable columns |
 |---|---|---|
-| `User` | customers and admins | `role` CUSTOMER\|ADMIN, `isBlocked`, `coinBalance` (denormalised, changed only via `changeCoins`) |
+| `User` | customers and admins | `role` CUSTOMER\|ADMIN, `isBlocked`, `coinBalance` (denormalised, changed only via `changeCoins`), `referralCode` (unique uppercase, e.g. `HAAT4X8K`) |
 | `RefreshToken` | sessions | `tokenHash` (SHA-256), `revokedAt`, `rotatedAt` (set only by rotation, so a racing refresh can be told apart from logout or theft), `expiresAt` |
 | `PasswordReset` | OTP reset | `otpHash`, `attempts` (max 5), `expiresAt` (10 min) |
 | `Address` | address book | `isDefault` (one per user, enforced in the service) |
@@ -42,6 +44,7 @@ Settings (single row, id = 1)    Banner    SearchTerm
 | `Coupon` | promotions | `type` PERCENT\|FLAT, `value`, `maxDiscount`, `minOrderValue`, window, `usageLimit`, `perUserLimit`, `usedCount`, `firstOrderOnly` |
 | `CouponRedemption` | usage per order | unique `orderId`. Deleted when the order is cancelled |
 | `CoinTransaction` | coin ledger | `type` EARN\|REDEEM\|REFUND\|REVERSE\|ADJUST\|BONUS, signed `amount`, `balanceAfter` |
+| `Referral` | customer referral program | `referrerId`, `refereeId` (unique), `status` PENDING\|COMPLETED\|REVERSED, `orderId` (unique, first delivered order), `referrerCoins`, `refereeCoins`, timestamps |
 | `Order` | — | `orderNumber` (`HTyymmddNNNNN`), `status`, `paymentMethod`, `paymentStatus`, `shippingAddress` JSON snapshot. Price breakup: `itemsMrp`, `itemsTotal`, `couponDiscount`, `coinsUsed`, `deliveryFee`, `payable`. Also `coinsToEarn`, `coinsEarned`, `riderId`, timestamps |
 | `OrderItem` | immutable snapshot | `productName`, `variantLabel`, `sku`, `imageUrl`, `mrp`, `price`, `quantity`, `lineTotal` |
 | `OrderStatusHistory` | timeline | `status`, `note`, `actorId`, `actorRole` |
@@ -50,7 +53,7 @@ Settings (single row, id = 1)    Banner    SearchTerm
 | `Banner` | merchandising | `placement` HOME_CAROUSEL\|HOME_STRIP, `linkType` NONE\|PRODUCT\|CATEGORY\|SEARCH\|URL, window |
 | `Notification` | in-app inbox | `type` ORDER\|PROMO\|SYSTEM, `data` JSON (e.g. `orderId`), `readAt` |
 | `NotificationLog` | email/WhatsApp delivery log | `channel`, `recipientType`, `status` SENT\|FAILED\|SKIPPED, `error`. OTP bodies are redacted |
-| `Settings` | store config | fees, thresholds, coin rules, return window, payment toggles, admin contacts |
+| `Settings` | store config | fees, thresholds, coin rules, referral rules (`referralEnabled`, `referralReferrerCoins`, `referralRefereeCoins`), return window, payment toggles, admin contacts |
 | `SearchTerm` | trending searches | `count` |
 
 ## Integrity rules (enforced in services)

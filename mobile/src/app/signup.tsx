@@ -10,7 +10,7 @@ import { errorMessage, fieldErrors } from "@/lib/api";
 import { colors, spacing } from "@/lib/theme";
 
 export default function SignupScreen() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", referralCode: "" });
   const register = useRegister();
   const errors = fieldErrors(register.error);
   const formError = register.error && Object.keys(errors).length === 0 ? errorMessage(register.error) : null;
@@ -23,6 +23,14 @@ export default function SignupScreen() {
       <Input label="Email" value={form.email} onChangeText={set("email")} autoCapitalize="none" keyboardType="email-address" autoComplete="email" error={errors.email} />
       <Input label="Phone" value={form.phone} onChangeText={set("phone")} keyboardType="phone-pad" autoComplete="tel" error={errors.phone} />
       <Input label="Password" value={form.password} onChangeText={set("password")} secureTextEntry hint="At least 8 characters" error={errors.password} />
+      <Input
+        label="Referral code (optional)"
+        value={form.referralCode}
+        onChangeText={(text) => set("referralCode")(text.toUpperCase())}
+        autoCapitalize="characters"
+        hint="Enter referral code, then open your box."
+        error={errors.referralCode}
+      />
       {formError ? (
         <Text variant="small" color={colors.danger}>
           {formError}
@@ -32,7 +40,18 @@ export default function SignupScreen() {
         title="Create account"
         loading={register.isPending}
         disabled={!ready}
-        onPress={() => register.mutate({ name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), password: form.password }, { onSuccess: finishAuth })}
+        onPress={() =>
+          register.mutate(
+            {
+              name: form.name.trim(),
+              email: form.email.trim(),
+              phone: form.phone.trim(),
+              password: form.password,
+              referralCode: form.referralCode.trim() || undefined,
+            },
+            { onSuccess: finishAuth },
+          )
+        }
       />
       <View style={styles.switch}>
         <Text color={colors.ink500}>Already have an account?</Text>

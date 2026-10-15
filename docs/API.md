@@ -39,11 +39,11 @@ When the access token has expired, the `UNAUTHORIZED` response carries `details.
 
 | Method | Path | Access | Body / Notes |
 |---|---|---|---|
-| POST | `/register` | 🌐 | `{ name, email, phone, password }` → `{ user, accessToken, refreshToken }` |
+| POST | `/register` | 🌐 | `{ name, email, phone, password, referralCode? }` → `{ user, accessToken, refreshToken }` |
 | POST | `/login` | 🌐 | `{ identifier (email or phone), password }` → session |
 | POST | `/refresh` | 🌐 | `{ refreshToken }` → new session. Tokens rotate on every refresh. Reusing an old token revokes all sessions, except within 10 s of its rotation: parallel requests racing to refresh then each get a fresh session. Logged-out tokens get no grace |
 | POST | `/logout` | 🌐 | `{ refreshToken }` → 204 |
-| GET | `/me` | 👤 | current user |
+| GET | `/me` | 👤 | current user (includes `referralCode`) |
 | POST | `/password/forgot` | 🌐 | `{ email }`: emails a 6-digit OTP (10 min) |
 | POST | `/password/reset` | 🌐 | `{ email, otp, password }` |
 | POST | `/password/change` | 👤 | `{ currentPassword, newPassword }` |
@@ -55,7 +55,7 @@ Passwords must be at least 8 characters and contain at least one letter and one 
 | Method | Path | Access | Notes |
 |---|---|---|---|
 | GET | `/home` | 🌐 | `{ banners: { carousel, strip }, categories, rails: [{ key, title, items, query }] }` |
-| GET | `/settings` | 🌐 | public store settings (fees, thresholds, coin rules, payment toggles) |
+| GET | `/settings` | 🌐 | public store settings (fees, thresholds, coin rules, referral bonuses, payment toggles) |
 | GET | `/categories` | 🌐 | tree: top-level categories with `children` |
 | GET | `/categories/:slug` | 🌐 | category with parent and children |
 | GET | `/brands` | 🌐 | active brands |
@@ -98,6 +98,8 @@ Passwords must be at least 8 characters and contain at least one letter and one 
 | Method | Path | Notes |
 |---|---|---|
 | PATCH | `/profile` | `{ name?, phone?, avatarUrl? }` |
+| GET | `/profile/referrals` | `{ referralCode, completedCount, pendingCount, totalCoinsEarned, referrerBonus, refereeBonus, enabled }` |
+| POST | `/profile/referrals` | `{ referralCode }`: applies referral code before first order |
 | POST | `/uploads/avatar` | multipart `file` (JPEG/PNG/WebP, max 5 MB) → `{ url }` |
 | GET/POST | `/addresses` | list / create `{ name, phone, line1, line2?, landmark?, city, state, pincode, type, isDefault }` |
 | PATCH/DELETE | `/addresses/:id` | update / delete (the default moves to the next address) |
@@ -170,6 +172,6 @@ Passwords must be at least 8 characters and contain at least one letter and one 
 | GET/POST, PATCH/DELETE | `/banners`, `/banners/:id` | — |
 | GET | `/reviews?q=&rating=&hidden=` | — |
 | PATCH/DELETE | `/reviews/:id` | `{ isHidden }` / delete. Ratings are recomputed |
-| GET/PATCH | `/settings` | store settings |
+| GET/PATCH | `/settings` | store settings (fees, delivery threshold, coin earning/redeeming, referral program rules, payment methods) |
 | GET | `/notification-logs?status=&channel=&orderId=` | email/WhatsApp delivery log |
 | POST | `/uploads` | multipart `file` → `{ url, key }` |

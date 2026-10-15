@@ -4,7 +4,8 @@
 
 | Level | Tool | Scope | Location |
 |---|---|---|---|
-| Unit | Vitest | Pure logic: pricing engine, coupon rules, coin math, order status machine, slug/money helpers | `backend/tests/unit` |
+| Unit | Vitest | Pure logic: pricing engine, coupon rules, coin math, order status machine, search-term normalisation, slug/money helpers | `backend/tests/unit` |
+| Unit (mobile) | Jest (`jest-expo`) | Voice-search permission/recognition state machine and transcript cleanup, with the native speech module mocked | `mobile/tests` |
 | Integration | Vitest + Supertest | HTTP → service → real Postgres: auth, catalog, cart → order, cancel, rider assignment | `backend/tests/integration` |
 | Static | `tsc --noEmit`, ESLint | All three apps | each app |
 | Smoke / E2E | Node script against a running API | Guest browse → register → cart/coupon → order → admin confirm/pack/assign rider/deliver → coins, review, return → buy-now cancel; checks the response fields both clients read | `tests/smoke/run.mjs` |
@@ -25,6 +26,9 @@ cd frontend && pnpm typecheck && pnpm lint && pnpm build
 
 # mobile
 cd mobile && yarn typecheck && yarn lint
+yarn test                              # jest-expo unit tests
+yarn test tests/voice-query.test.ts    # one file
+yarn test -t "never re-prompts"        # one case by name
 
 # smoke, from the repo root (API must be running and seeded)
 node --env-file=backend/.env tests/smoke/run.mjs
@@ -63,12 +67,20 @@ Every request has a 30 s deadline, so a hung endpoint fails with its path instea
 - Illegal status transitions are rejected.
 - Assigning an inactive or unknown rider is rejected. A valid assignment writes NotificationLog rows.
 - Guest calls to protected endpoints return 401. A customer calling admin endpoints gets 403.
+- Voice search asks the OS for microphone access only when the dialog will actually appear, and
+  never re-prompts once the permission is blocked.
+- A refused microphone permission ends in a cancelled sheet with a Settings action, never a crash.
+- Spoken filler and punctuation are stripped from a transcript, and the query is capped at 100
+  characters; prose is never recorded as a trending search term.
 
 ## 5. Manual QA checklist (release)
 
 - [ ] Fresh install: splash → onboarding → home as guest
 - [ ] Guest taps Add to cart → login sheet → after login the item is in the cart
 - [ ] Search suggestions, filters and sort combinations
+- [ ] Voice search: allow the mic prompt → partial text appears → transcript fills the box and suggestions render, with no automatic navigation
+- [ ] Voice search: deny the prompt → sheet cancels, inline alert appears; deny permanently then reopen → no second OS prompt, **Open Settings** reaches the Haat app settings page
+- [ ] Voice search: switch to हिन्दी and dictate Hindi; and dictate in aeroplane mode to prove recognition is on-device
 - [ ] Product with variants: switching variant updates the price, MRP and stock
 - [ ] Coupon apply and remove, invalid coupon message
 - [ ] Coins toggle shows the correct deduction and cap

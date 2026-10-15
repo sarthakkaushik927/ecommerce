@@ -22,7 +22,7 @@ admin (Next) ──┘                              ├─► SMTP email
 | Splash, onboarding, guest browsing | KPI overview, revenue chart |
 | Login / signup / OTP password reset | Products + variants + images CRUD |
 | Home: banners, categories, deals | Categories & brands CRUD |
-| Search with suggestions, filters, sort | Inventory: stock levels, adjustments, movement log |
+| Search: suggestions, filters, sort, voice (on-device, EN + HI) | Inventory: stock levels, adjustments, movement log |
 | Product: gallery, variants, offers, reviews | Orders: status flow, assign rider, notifications |
 | Wishlist, cart, coupons, Haat Coins | Riders registry |
 | Checkout: addresses, COD / UPI on delivery | Customers, coins adjustment, block |
@@ -55,7 +55,17 @@ pnpm dev                    # http://localhost:3000  (login with ADMIN_SEED_EMAI
 cd ../mobile
 cp .env.example .env        # EXPO_PUBLIC_API_URL=http://<your-LAN-IP>:4000/api/v1
 yarn install
-yarn start                  # press a for Android
+# Voice search uses a native on-device speech module, so Expo Go will not run this app.
+# Build once, then `yarn start` reuses the dev build.
+npx expo run:android        # or: eas build --profile development
+yarn test                   # jest-expo unit tests
+# or 
+
+#if using scrcpy
+adb reverse tcp:8081 tcp:8081  
+adb reverse tcp:4000 tcp:4000
+
+npx expo start --localhost -c   #then press a
 ```
 
 Emails sent in development appear in Mailpit at http://localhost:8025.
@@ -79,4 +89,4 @@ Emails sent in development appear in Mailpit at http://localhost:8025.
 
 - **Backend:** Express 5, TypeScript, Prisma 7 (`@prisma/adapter-pg`), Zod, JWT, bcrypt, Nodemailer, Pino, Vitest and Supertest.
 - **Admin:** Next.js 16 (App Router, Cache Components, Server Actions), Tailwind CSS 4, Recharts, Lucide.
-- **Mobile:** Expo SDK 57, Expo Router, TanStack Query, Zustand, Expo SecureStore, Expo Image.
+- **Mobile:** Expo SDK 57, Expo Router, TanStack Query, Zustand, Expo SecureStore, Expo Image, `expo-speech-recognition` (on-device voice search), Jest (`jest-expo`).

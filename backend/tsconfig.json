@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2023",
-    "lib": ["ES2023"],
+    "lib": ["ES2023", "DOM"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "types": ["node"],
@@ -19,5 +19,5 @@
     "outDir": "dist",
     "sourceMap": true
   },
-  "include": ["src", "prisma", "tests", "prisma.config.ts", "vitest.config.ts"]
+  "include": ["src", "api", "prisma", "tests", "prisma.config.ts", "vitest.config.ts"]
 }

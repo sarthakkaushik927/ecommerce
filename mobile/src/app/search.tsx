@@ -1,8 +1,9 @@
 import { Image } from "expo-image";
-import { router } from "expo-router";
-import { ChevronLeft, Clock, Search, TrendingUp, X } from "lucide-react-native";
-import { useEffect, useState } from "react";
+import { router, useLocalSearchParams } from "expo-router";
+import { ChevronLeft, Clock, Mic, Search, TrendingUp, X } from "lucide-react-native";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, TextInput, View } from "react-native";
+import { VoiceSearchModal } from "@/components/search/voice-search-modal";
 import { Chip } from "@/components/ui/chip";
 import { Screen } from "@/components/ui/screen";
 import { Text } from "@/components/ui/text";
@@ -12,14 +13,23 @@ import { openListing } from "@/lib/navigation";
 import { colors, fonts, radius, spacing } from "@/lib/theme";
 
 export default function SearchScreen() {
+  const { voice } = useLocalSearchParams<{ voice?: string }>();
   const [q, setQ] = useState("");
   const [recent, setRecent] = useState<string[]>([]);
+  // Arriving from the home search bar's mic opens the sheet straight away.
+  const [voiceOpen, setVoiceOpen] = useState(voice === "1");
+  const input = useRef<TextInput>(null);
   const suggestions = useSuggestions(q);
   const trending = useTrendingSearches();
   const typing = q.trim().length >= 2;
 
   useEffect(() => {
     deviceStore.recentSearches().then(setRecent);
+  }, []);
+
+  const closeVoice = useCallback(() => {
+    setVoiceOpen(false);
+    input.current?.focus();
   }, []);
 
   const submit = (term: string) => {
@@ -39,6 +49,7 @@ export default function SearchScreen() {
         <View style={styles.inputBox}>
           <Search size={18} color={colors.ink500} />
           <TextInput
+            ref={input}
             autoFocus
             value={q}
             onChangeText={setQ}
@@ -53,6 +64,9 @@ export default function SearchScreen() {
               <X size={18} color={colors.ink500} />
             </Pressable>
           ) : null}
+          <Pressable accessibilityRole="button" accessibilityLabel="Search by voice" hitSlop={10} onPress={() => setVoiceOpen(true)}>
+            <Mic size={18} color={colors.brand700} />
+          </Pressable>
         </View>
       </View>
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
@@ -129,6 +143,7 @@ export default function SearchScreen() {
           </>
         )}
       </ScrollView>
+      <VoiceSearchModal visible={voiceOpen} onClose={closeVoice} onTranscript={setQ} />
     </Screen>
   );
 }

@@ -1,10 +1,10 @@
 import { router } from "expo-router";
-import { Search } from "lucide-react-native";
+import { Mic, Search } from "lucide-react-native";
 import { Pressable, StyleSheet } from "react-native";
 import { colors, radius, spacing } from "@/lib/theme";
 import { Text } from "./text";
 
-/** Tappable stand-in that opens the real search screen. */
+/** Tappable stand-in that opens the real search screen. The mic opens it listening. */
 export function SearchBar({ placeholder = "Search for products, brands and more" }: { placeholder?: string }) {
   return (
     <Pressable accessibilityRole="search" accessibilityLabel="Search" onPress={() => router.push("/search")} style={({ pressed }) => [styles.bar, pressed && styles.pressed]}>
@@ -12,6 +12,14 @@ export function SearchBar({ placeholder = "Search for products, brands and more"
       <Text color={colors.ink300} numberOfLines={1} style={styles.text}>
         {placeholder}
       </Text>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Search by voice"
+        hitSlop={10}
+        onPress={() => router.push({ pathname: "/search", params: { voice: "1" } })}
+      >
+        <Mic size={18} color={colors.brand700} />
+      </Pressable>
     </Pressable>
   );
 }

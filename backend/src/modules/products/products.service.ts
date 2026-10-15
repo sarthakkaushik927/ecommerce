@@ -8,8 +8,7 @@ import { listPublicCoupons } from "../coupons/coupons.service.js";
 import { wishlistedIds } from "../wishlist/wishlist.service.js";
 import { productCardSelect, toProductCard } from "./products.presenter.js";
 import type { ProductListQuery } from "./products.schema.js";
-
-const SEARCH_TERM_MAX_LENGTH = 60;
+import { normalizeSearchTerm } from "./search-term.js";
 
 async function buildWhere(query: ProductListQuery): Promise<Prisma.ProductWhereInput> {
   const and: Prisma.ProductWhereInput[] = [{ isActive: true }];
@@ -59,7 +58,9 @@ function buildOrderBy(query: ProductListQuery): Prisma.ProductOrderByWithRelatio
 }
 
 function recordSearchTerm(q: string) {
-  const term = q.toLowerCase().slice(0, SEARCH_TERM_MAX_LENGTH);
+  // Voice queries arrive as spoken sentences; they are searchable but must not become trending chips.
+  const term = normalizeSearchTerm(q);
+  if (!term) return;
   prisma.searchTerm
     .upsert({ where: { term }, update: { count: { increment: 1 } }, create: { term } })
     .catch((error: unknown) => logger.warn({ err: error }, "Failed to record search term"));

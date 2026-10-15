@@ -1,6 +1,85 @@
 {
  "categories": [
   {
+   "name": "Grocery & Fresh",
+   "slug": "grocery",
+   "children": [
+    {
+     "name": "Vegetables",
+     "slug": "vegetables",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Vegetables"
+    },
+    {
+     "name": "Fruits",
+     "slug": "fruits",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Fruits"
+    },
+    {
+     "name": "Dairy & Bakery",
+     "slug": "dairy-bakery",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Dairy%20%26%20Bakery"
+    },
+    {
+     "name": "Atta, Rice & Dal",
+     "slug": "atta-rice-dal",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Atta%2C%20Rice%20%26%20Dal"
+    },
+    {
+     "name": "Oil & Masala",
+     "slug": "oil-masala",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Oil%20%26%20Masala"
+    },
+    {
+     "name": "Snacks & Beverages",
+     "slug": "snacks-beverages",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Snacks%20%26%20Beverages"
+    },
+    {
+     "name": "Daily Essentials",
+     "slug": "daily-essentials",
+     "imageUrl": "https://cdn.dummyjson.com/product-images/groceries/apple/1.webp"
+    }
+   ],
+   "imageUrl": "https://cdn.dummyjson.com/product-images/groceries/apple/1.webp"
+  },
+  {
+   "name": "Medicines & Wellness",
+   "slug": "medicines",
+   "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Medicines",
+   "children": [
+    {
+     "name": "Pain Relief",
+     "slug": "pain-relief",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Pain%20Relief"
+    },
+    {
+     "name": "Cold, Cough & Fever",
+     "slug": "cold-cough-fever",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cold%2C%20Cough%20%26%20Fever"
+    },
+    {
+     "name": "Digestive Care",
+     "slug": "digestive-care",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Digestive%20Care"
+    },
+    {
+     "name": "Vitamins & Supplements",
+     "slug": "vitamins-supplements",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Vitamins%20%26%20Supplements"
+    },
+    {
+     "name": "First Aid",
+     "slug": "first-aid",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=First%20Aid"
+    },
+    {
+     "name": "Diabetes Care",
+     "slug": "diabetes-care",
+     "imageUrl": "https://placehold.co/600x600/FFC727/1C1A14/png?text=Diabetes%20Care"
+    }
+   ]
+  },
+  {
    "name": "Mobiles & Electronics",
    "slug": "mobiles-electronics",
    "children": [
@@ -141,18 +220,6 @@
     }
    ],
    "imageUrl": "https://cdn.dummyjson.com/product-images/kitchen-accessories/bamboo-spatula/1.webp"
-  },
-  {
-   "name": "Grocery",
-   "slug": "grocery",
-   "children": [
-    {
-     "name": "Daily Essentials",
-     "slug": "daily-essentials",
-     "imageUrl": "https://cdn.dummyjson.com/product-images/groceries/apple/1.webp"
-    }
-   ],
-   "imageUrl": "https://cdn.dummyjson.com/product-images/groceries/apple/1.webp"
   },
   {
    "name": "Sports",
@@ -1321,12 +1388,12 @@
    "tags": [
     "fruits"
    ],
-   "category": "daily-essentials",
+   "category": "fruits",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/apple/1.webp"
    ],
-   "isFeatured": false,
+   "isFeatured": true,
    "variants": [
     {
      "sku": "HT-0016",
@@ -1595,7 +1662,7 @@
    "tags": [
     "cooking essentials"
    ],
-   "category": "daily-essentials",
+   "category": "oil-masala",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/cooking-oil/1.webp"
@@ -1663,7 +1730,7 @@
    "tags": [
     "vegetables"
    ],
-   "category": "daily-essentials",
+   "category": "vegetables",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/cucumber/1.webp"
@@ -1800,12 +1867,12 @@
    "tags": [
     "dairy"
    ],
-   "category": "daily-essentials",
+   "category": "dairy-bakery",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/eggs/1.webp"
    ],
-   "isFeatured": false,
+   "isFeatured": true,
    "variants": [
     {
      "sku": "HT-0023",
@@ -1936,7 +2003,7 @@
    "tags": [
     "vegetables"
    ],
-   "category": "daily-essentials",
+   "category": "vegetables",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/green-bell-pepper/1.webp"
@@ -2004,7 +2071,7 @@
    "tags": [
     "vegetables"
    ],
-   "category": "daily-essentials",
+   "category": "vegetables",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/green-chili-pepper/1.webp"
@@ -2072,7 +2139,7 @@
    "tags": [
     "condiments"
    ],
-   "category": "daily-essentials",
+   "category": "oil-masala",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/honey-jar/1.webp"
@@ -2140,7 +2207,7 @@
    "tags": [
     "desserts"
    ],
-   "category": "daily-essentials",
+   "category": "dairy-bakery",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/ice-cream/1.webp",
@@ -2211,7 +2278,7 @@
    "tags": [
     "beverages"
    ],
-   "category": "daily-essentials",
+   "category": "snacks-beverages",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/juice/1.webp"
@@ -2279,7 +2346,7 @@
    "tags": [
     "fruits"
    ],
-   "category": "daily-essentials",
+   "category": "fruits",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/kiwi/1.webp"
@@ -2347,7 +2414,7 @@
    "tags": [
     "fruits"
    ],
-   "category": "daily-essentials",
+   "category": "fruits",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/lemon/1.webp"
@@ -2415,12 +2482,12 @@
    "tags": [
     "dairy"
    ],
-   "category": "daily-essentials",
+   "category": "dairy-bakery",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/milk/1.webp"
    ],
-   "isFeatured": false,
+   "isFeatured": true,
    "variants": [
     {
      "sku": "HT-0032",
@@ -2483,7 +2550,7 @@
    "tags": [
     "fruits"
    ],
-   "category": "daily-essentials",
+   "category": "fruits",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/mulberry/1.webp"
@@ -2552,7 +2619,7 @@
     "beverages",
     "coffee"
    ],
-   "category": "daily-essentials",
+   "category": "snacks-beverages",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/nescafe-coffee/1.webp"
@@ -2620,7 +2687,7 @@
    "tags": [
     "vegetables"
    ],
-   "category": "daily-essentials",
+   "category": "vegetables",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/potatoes/1.webp"
@@ -2688,7 +2755,7 @@
    "tags": [
     "health supplements"
    ],
-   "category": "daily-essentials",
+   "category": "snacks-beverages",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/protein-powder/1.webp"
@@ -2756,12 +2823,12 @@
    "tags": [
     "vegetables"
    ],
-   "category": "daily-essentials",
+   "category": "vegetables",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/red-onions/1.webp"
    ],
-   "isFeatured": false,
+   "isFeatured": true,
    "variants": [
     {
      "sku": "HT-0037",
@@ -2824,12 +2891,12 @@
    "tags": [
     "grains"
    ],
-   "category": "daily-essentials",
+   "category": "atta-rice-dal",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/rice/1.webp"
    ],
-   "isFeatured": false,
+   "isFeatured": true,
    "variants": [
     {
      "sku": "HT-0038",
@@ -2892,7 +2959,7 @@
    "tags": [
     "beverages"
    ],
-   "category": "daily-essentials",
+   "category": "snacks-beverages",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/soft-drinks/1.webp"
@@ -2960,7 +3027,7 @@
    "tags": [
     "fruits"
    ],
-   "category": "daily-essentials",
+   "category": "fruits",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/strawberry/1.webp"
@@ -3097,7 +3164,7 @@
    "tags": [
     "beverages"
    ],
-   "category": "daily-essentials",
+   "category": "snacks-beverages",
    "brand": null,
    "images": [
     "https://cdn.dummyjson.com/product-images/groceries/water/1.webp"
@@ -14482,6 +14549,4166 @@
      "date": "2025-04-30T09:41:02.054Z"
     }
    ]
+  },
+  {
+   "name": "Tomato",
+   "slug": "tomato",
+   "description": "Fresh tomato, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "tomato",
+    "sabzi"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Tomato"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-VEG-001",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 2600,
+     "price": 2200,
+     "stock": 60
+    },
+    {
+     "sku": "HT-VEG-002",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 5000,
+     "price": 4000,
+     "stock": 45
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Really fresh, better than the local mandi.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Potato",
+   "slug": "potato",
+   "description": "Fresh potato, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "potato",
+    "aloo"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Potato"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-VEG-003",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 3800,
+     "price": 3200,
+     "stock": 80
+    },
+    {
+     "sku": "HT-VEG-004",
+     "label": "5 kg",
+     "attributes": {
+      "Weight": "5 kg"
+     },
+     "mrp": 18000,
+     "price": 15500,
+     "stock": 25
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Really fresh, better than the local mandi.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Onion",
+   "slug": "onion",
+   "description": "Fresh onion, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "onion",
+    "pyaz"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Onion"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-VEG-005",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 4200,
+     "price": 3500,
+     "stock": 70
+    },
+    {
+     "sku": "HT-VEG-006",
+     "label": "5 kg",
+     "attributes": {
+      "Weight": "5 kg"
+     },
+     "mrp": 20000,
+     "price": 16900,
+     "stock": 20
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Really fresh, better than the local mandi.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Cauliflower",
+   "slug": "cauliflower",
+   "description": "Fresh cauliflower, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "cauliflower",
+    "gobi"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cauliflower"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-007",
+     "label": "1 piece",
+     "attributes": {
+      "Unit": "1 piece"
+     },
+     "mrp": 4500,
+     "price": 3500,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Spinach",
+   "slug": "spinach",
+   "description": "Fresh spinach, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "2 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "spinach",
+    "palak",
+    "leafy"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Spinach"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-VEG-008",
+     "label": "250 g bunch",
+     "attributes": {
+      "Weight": "250 g"
+     },
+     "mrp": 2500,
+     "price": 1900,
+     "stock": 50
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Really fresh, better than the local mandi.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Carrot",
+   "slug": "carrot",
+   "description": "Fresh carrot, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "carrot",
+    "gajar"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Carrot"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-009",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 3100,
+     "price": 2600,
+     "stock": 55
+    },
+    {
+     "sku": "HT-VEG-010",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 6000,
+     "price": 4900,
+     "stock": 35
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Ginger",
+   "slug": "ginger",
+   "description": "Fresh ginger, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "2 weeks"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "ginger",
+    "adrak"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Ginger"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-011",
+     "label": "250 g",
+     "attributes": {
+      "Weight": "250 g"
+     },
+     "mrp": 4000,
+     "price": 3200,
+     "stock": 45
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Garlic",
+   "slug": "garlic",
+   "description": "Fresh garlic, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3 weeks"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "garlic",
+    "lehsun"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Garlic"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-012",
+     "label": "250 g",
+     "attributes": {
+      "Weight": "250 g"
+     },
+     "mrp": 5000,
+     "price": 4200,
+     "stock": 45
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Brinjal",
+   "slug": "brinjal",
+   "description": "Fresh brinjal, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "brinjal",
+    "baingan"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Brinjal"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-013",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 2800,
+     "price": 2300,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Lady Finger",
+   "slug": "lady-finger",
+   "description": "Fresh lady finger, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "okra",
+    "bhindi"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Lady%20Finger"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-014",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 3200,
+     "price": 2600,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Cabbage",
+   "slug": "cabbage",
+   "description": "Fresh cabbage, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "5 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "cabbage",
+    "patta-gobi"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cabbage"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-015",
+     "label": "1 piece",
+     "attributes": {
+      "Unit": "1 piece"
+     },
+     "mrp": 3500,
+     "price": 2800,
+     "stock": 35
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Coriander Leaves",
+   "slug": "coriander-leaves",
+   "description": "Fresh coriander leaves, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "2 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "coriander",
+    "dhaniya",
+    "herbs"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Coriander%20Leaves"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-016",
+     "label": "100 g",
+     "attributes": {
+      "Weight": "100 g"
+     },
+     "mrp": 1500,
+     "price": 1200,
+     "stock": 60
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Green Peas",
+   "slug": "green-peas",
+   "description": "Fresh green peas, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "peas",
+    "matar"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Green%20Peas"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-017",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 6000,
+     "price": 4900,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Bottle Gourd",
+   "slug": "bottle-gourd",
+   "description": "Fresh bottle gourd, sorted and weighed at the store on the morning of delivery.",
+   "highlights": [
+    "Picked and packed the same day",
+    "Loose weighed, no plastic trays",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3–4 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "vegetables",
+    "fresh",
+    "lauki",
+    "gourd"
+   ],
+   "category": "vegetables",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Bottle%20Gourd"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-VEG-018",
+     "label": "1 piece",
+     "attributes": {
+      "Unit": "1 piece"
+     },
+     "mrp": 3000,
+     "price": 2400,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Banana",
+   "slug": "banana",
+   "description": "Hand-picked banana, graded for size and ripeness before packing.",
+   "highlights": [
+    "Naturally ripened",
+    "Graded and hand-picked",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "fruits",
+    "fresh",
+    "banana",
+    "kela"
+   ],
+   "category": "fruits",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Banana"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-FRT-019",
+     "label": "6 pieces",
+     "attributes": {
+      "Unit": "6 pieces"
+     },
+     "mrp": 4000,
+     "price": 3400,
+     "stock": 60
+    },
+    {
+     "sku": "HT-FRT-020",
+     "label": "1 dozen",
+     "attributes": {
+      "Unit": "12 pieces"
+     },
+     "mrp": 7000,
+     "price": 5900,
+     "stock": 40
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Sweet and fresh, packed well.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Alphonso Mango",
+   "slug": "alphonso-mango",
+   "description": "Hand-picked alphonso mango, graded for size and ripeness before packing.",
+   "highlights": [
+    "Naturally ripened",
+    "Graded and hand-picked",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "4–5 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "fruits",
+    "fresh",
+    "mango",
+    "aam"
+   ],
+   "category": "fruits",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Alphonso%20Mango"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-FRT-021",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 35000,
+     "price": 29900,
+     "stock": 20
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Sweet and fresh, packed well.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Orange",
+   "slug": "orange",
+   "description": "Hand-picked orange, graded for size and ripeness before packing.",
+   "highlights": [
+    "Naturally ripened",
+    "Graded and hand-picked",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "4–5 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "fruits",
+    "fresh",
+    "orange",
+    "santra"
+   ],
+   "category": "fruits",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Orange"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-FRT-022",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 12000,
+     "price": 9900,
+     "stock": 35
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Papaya",
+   "slug": "papaya",
+   "description": "Hand-picked papaya, graded for size and ripeness before packing.",
+   "highlights": [
+    "Naturally ripened",
+    "Graded and hand-picked",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "4–5 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "fruits",
+    "fresh",
+    "papaya",
+    "papita"
+   ],
+   "category": "fruits",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Papaya"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-FRT-023",
+     "label": "1 piece",
+     "attributes": {
+      "Unit": "1 piece (approx 1 kg)"
+     },
+     "mrp": 8000,
+     "price": 6500,
+     "stock": 25
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Pomegranate",
+   "slug": "pomegranate",
+   "description": "Hand-picked pomegranate, graded for size and ripeness before packing.",
+   "highlights": [
+    "Naturally ripened",
+    "Graded and hand-picked",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "1 week"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "fruits",
+    "fresh",
+    "pomegranate",
+    "anar"
+   ],
+   "category": "fruits",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Pomegranate"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-FRT-024",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 22000,
+     "price": 18900,
+     "stock": 25
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Green Grapes",
+   "slug": "green-grapes",
+   "description": "Hand-picked green grapes, graded for size and ripeness before packing.",
+   "highlights": [
+    "Naturally ripened",
+    "Graded and hand-picked",
+    "Replacement if not fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "4–5 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    },
+    {
+     "label": "Return policy",
+     "value": "Replacement on the spot if not fresh"
+    }
+   ],
+   "tags": [
+    "fruits",
+    "fresh",
+    "grapes",
+    "angoor"
+   ],
+   "category": "fruits",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Green%20Grapes"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-FRT-025",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 8000,
+     "price": 6500,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Paneer",
+   "slug": "paneer",
+   "description": "Fresh malai paneer, soft and firm enough to hold its shape when fried.",
+   "highlights": [
+    "Made fresh daily",
+    "No added starch",
+    "Vegetarian"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3 days refrigerated"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated below 4°C"
+    },
+    {
+     "label": "Type",
+     "value": "Fresh, vegetarian"
+    }
+   ],
+   "tags": [
+    "paneer",
+    "dairy",
+    "fresh"
+   ],
+   "category": "dairy-bakery",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Paneer"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-DRY-026",
+     "label": "200 g",
+     "attributes": {
+      "Weight": "200 g"
+     },
+     "mrp": 9500,
+     "price": 8900,
+     "stock": 40
+    },
+    {
+     "sku": "HT-DRY-027",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 22500,
+     "price": 20900,
+     "stock": 20
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Fresh and well packed.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Curd",
+   "slug": "curd",
+   "description": "Thick set dahi made from full cream milk.",
+   "highlights": [
+    "Thick set",
+    "Full cream milk",
+    "No preservatives"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "4 days refrigerated"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Type",
+     "value": "Full cream"
+    }
+   ],
+   "tags": [
+    "curd",
+    "dahi",
+    "dairy"
+   ],
+   "category": "dairy-bakery",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Curd"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-DRY-028",
+     "label": "400 g cup",
+     "attributes": {
+      "Weight": "400 g"
+     },
+     "mrp": 5000,
+     "price": 4500,
+     "stock": 50
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Butter",
+   "slug": "butter",
+   "description": "Salted table butter for everyday cooking and breakfast.",
+   "highlights": [
+    "Salted",
+    "Pasteurised cream",
+    "Vegetarian"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "6 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Type",
+     "value": "Salted"
+    }
+   ],
+   "tags": [
+    "butter",
+    "dairy"
+   ],
+   "category": "dairy-bakery",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Butter"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-DRY-029",
+     "label": "100 g",
+     "attributes": {
+      "Weight": "100 g"
+     },
+     "mrp": 6200,
+     "price": 5800,
+     "stock": 60
+    },
+    {
+     "sku": "HT-DRY-030",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 28500,
+     "price": 26900,
+     "stock": 25
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "White Bread",
+   "slug": "white-bread",
+   "description": "Soft sandwich bread baked each morning.",
+   "highlights": [
+    "Baked fresh daily",
+    "Soft crumb",
+    "No trans fat"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "3 days"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Weight",
+     "value": "400 g"
+    }
+   ],
+   "tags": [
+    "bread",
+    "bakery"
+   ],
+   "category": "dairy-bakery",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=White%20Bread"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-DRY-031",
+     "label": "400 g loaf",
+     "attributes": {
+      "Weight": "400 g"
+     },
+     "mrp": 4500,
+     "price": 4000,
+     "stock": 45
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Cheese Slices",
+   "slug": "cheese-slices",
+   "description": "Processed cheese slices, ready for sandwiches and toast.",
+   "highlights": [
+    "10 slices",
+    "Calcium rich",
+    "Vegetarian"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "6 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Keep refrigerated"
+    },
+    {
+     "label": "Pack size",
+     "value": "10 slices"
+    }
+   ],
+   "tags": [
+    "cheese",
+    "dairy"
+   ],
+   "category": "dairy-bakery",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cheese%20Slices"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-DRY-032",
+     "label": "200 g",
+     "attributes": {
+      "Weight": "200 g"
+     },
+     "mrp": 14500,
+     "price": 13500,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Whole Wheat Atta",
+   "slug": "whole-wheat-atta",
+   "description": "Chakki-fresh whole wheat flour, milled coarse for soft rotis.",
+   "highlights": [
+    "100% whole wheat",
+    "Chakki fresh",
+    "High fibre"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "6 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Chakki atta, 100% whole wheat"
+    }
+   ],
+   "tags": [
+    "atta",
+    "flour",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Whole%20Wheat%20Atta"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-STP-033",
+     "label": "5 kg",
+     "attributes": {
+      "Weight": "5 kg"
+     },
+     "mrp": 29500,
+     "price": 25900,
+     "stock": 40
+    },
+    {
+     "sku": "HT-STP-034",
+     "label": "10 kg",
+     "attributes": {
+      "Weight": "10 kg"
+     },
+     "mrp": 57500,
+     "price": 49900,
+     "stock": 18
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Fresh and well packed.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Basmati Rice",
+   "slug": "basmati-rice",
+   "description": "Aged long-grain basmati that cooks separate and fluffy.",
+   "highlights": [
+    "Aged 12 months",
+    "Extra long grain",
+    "Low broken percentage"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "12 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Aged long grain"
+    }
+   ],
+   "tags": [
+    "rice",
+    "basmati",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Basmati%20Rice"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-STP-035",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 18500,
+     "price": 15900,
+     "stock": 45
+    },
+    {
+     "sku": "HT-STP-036",
+     "label": "5 kg",
+     "attributes": {
+      "Weight": "5 kg"
+     },
+     "mrp": 85000,
+     "price": 74900,
+     "stock": 20
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Fresh and well packed.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Toor Dal",
+   "slug": "toor-dal",
+   "description": "Polished arhar dal, cleaned and ready to cook.",
+   "highlights": [
+    "Machine cleaned",
+    "High protein",
+    "No added colour"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "9 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Polished"
+    }
+   ],
+   "tags": [
+    "dal",
+    "toor",
+    "arhar",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Toor%20Dal"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-STP-037",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 10000,
+     "price": 8700,
+     "stock": 50
+    },
+    {
+     "sku": "HT-STP-038",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 19000,
+     "price": 16500,
+     "stock": 35
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Fresh and well packed.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Chana Dal",
+   "slug": "chana-dal",
+   "description": "Split bengal gram, evenly graded.",
+   "highlights": [
+    "Evenly graded",
+    "High protein",
+    "No added colour"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "9 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Split, polished"
+    }
+   ],
+   "tags": [
+    "dal",
+    "chana",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Chana%20Dal"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-STP-039",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 14000,
+     "price": 11900,
+     "stock": 35
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Moong Dal",
+   "slug": "moong-dal",
+   "description": "Split and skinned green gram, quick to cook.",
+   "highlights": [
+    "Cooks in 15 minutes",
+    "Light on the stomach",
+    "High protein"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "9 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Split, skinned"
+    }
+   ],
+   "tags": [
+    "dal",
+    "moong",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Moong%20Dal"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-STP-040",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 16500,
+     "price": 14200,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Rajma",
+   "slug": "rajma",
+   "description": "Red kidney beans, uniform in size.",
+   "highlights": [
+    "Uniform grain",
+    "High fibre",
+    "Soaks evenly"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "9 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Whole"
+    }
+   ],
+   "tags": [
+    "rajma",
+    "beans",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Rajma"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-STP-041",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 11000,
+     "price": 9500,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Sugar",
+   "slug": "sugar",
+   "description": "Refined sulphur-free sugar crystals.",
+   "highlights": [
+    "Sulphur free",
+    "Uniform crystals",
+    "Food grade packing"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "24 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Refined, sulphur free"
+    }
+   ],
+   "tags": [
+    "sugar",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Sugar"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-STP-042",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 5500,
+     "price": 4900,
+     "stock": 60
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Iodised Salt",
+   "slug": "iodised-salt",
+   "description": "Free-flowing iodised table salt.",
+   "highlights": [
+    "Iodised",
+    "Free flowing",
+    "Vacuum evaporated"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "24 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Iodised, free flowing"
+    }
+   ],
+   "tags": [
+    "salt",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Iodised%20Salt"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-STP-043",
+     "label": "1 kg",
+     "attributes": {
+      "Weight": "1 kg"
+     },
+     "mrp": 2800,
+     "price": 2400,
+     "stock": 70
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Poha",
+   "slug": "poha",
+   "description": "Medium-thick flattened rice for breakfast poha.",
+   "highlights": [
+    "Medium thick flakes",
+    "No grit",
+    "Quick breakfast"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "6 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Medium thick"
+    }
+   ],
+   "tags": [
+    "poha",
+    "breakfast",
+    "staples"
+   ],
+   "category": "atta-rice-dal",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Poha"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-STP-044",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 4500,
+     "price": 3900,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Mustard Oil",
+   "slug": "mustard-oil",
+   "description": "Kachi ghani mustard oil, cold pressed for a strong aroma.",
+   "highlights": [
+    "Cold pressed",
+    "Strong natural pungency",
+    "No added preservatives"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "9 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dark place"
+    },
+    {
+     "label": "Type",
+     "value": "Kachi ghani, cold pressed"
+    }
+   ],
+   "tags": [
+    "oil",
+    "mustard",
+    "sarso"
+   ],
+   "category": "oil-masala",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Mustard%20Oil"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-OIL-045",
+     "label": "1 L",
+     "attributes": {
+      "Volume": "1 L"
+     },
+     "mrp": 18500,
+     "price": 16500,
+     "stock": 40
+    },
+    {
+     "sku": "HT-OIL-046",
+     "label": "5 L",
+     "attributes": {
+      "Volume": "5 L"
+     },
+     "mrp": 89000,
+     "price": 79900,
+     "stock": 15
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Fresh and well packed.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Desi Ghee",
+   "slug": "desi-ghee",
+   "description": "Cow ghee made by the traditional bilona method.",
+   "highlights": [
+    "Bilona method",
+    "Granular texture",
+    "Rich aroma"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "12 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Type",
+     "value": "Cow ghee"
+    }
+   ],
+   "tags": [
+    "ghee",
+    "dairy"
+   ],
+   "category": "oil-masala",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Desi%20Ghee"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-OIL-047",
+     "label": "500 ml",
+     "attributes": {
+      "Volume": "500 ml"
+     },
+     "mrp": 37500,
+     "price": 33900,
+     "stock": 25
+    },
+    {
+     "sku": "HT-OIL-048",
+     "label": "1 L",
+     "attributes": {
+      "Volume": "1 L"
+     },
+     "mrp": 72500,
+     "price": 65900,
+     "stock": 12
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Turmeric Powder",
+   "slug": "turmeric-powder",
+   "description": "Stone-ground haldi with a deep colour.",
+   "highlights": [
+    "Stone ground",
+    "No artificial colour",
+    "High curcumin"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "12 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Airtight container"
+    },
+    {
+     "label": "Type",
+     "value": "Ground"
+    }
+   ],
+   "tags": [
+    "masala",
+    "turmeric",
+    "haldi"
+   ],
+   "category": "oil-masala",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Turmeric%20Powder"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MSL-049",
+     "label": "200 g",
+     "attributes": {
+      "Weight": "200 g"
+     },
+     "mrp": 6000,
+     "price": 4900,
+     "stock": 50
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Red Chilli Powder",
+   "slug": "red-chilli-powder",
+   "description": "Medium-hot ground red chilli.",
+   "highlights": [
+    "Medium heat",
+    "No artificial colour",
+    "Stone ground"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "12 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Airtight container"
+    },
+    {
+     "label": "Type",
+     "value": "Ground, medium hot"
+    }
+   ],
+   "tags": [
+    "masala",
+    "chilli",
+    "mirchi"
+   ],
+   "category": "oil-masala",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Red%20Chilli%20Powder"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MSL-050",
+     "label": "200 g",
+     "attributes": {
+      "Weight": "200 g"
+     },
+     "mrp": 8500,
+     "price": 7200,
+     "stock": 45
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Coriander Powder",
+   "slug": "coriander-powder",
+   "description": "Ground dhaniya for everyday gravies.",
+   "highlights": [
+    "Stone ground",
+    "Fresh aroma",
+    "No fillers"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "12 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Airtight container"
+    },
+    {
+     "label": "Type",
+     "value": "Ground"
+    }
+   ],
+   "tags": [
+    "masala",
+    "coriander",
+    "dhaniya"
+   ],
+   "category": "oil-masala",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Coriander%20Powder"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MSL-051",
+     "label": "200 g",
+     "attributes": {
+      "Weight": "200 g"
+     },
+     "mrp": 6500,
+     "price": 5500,
+     "stock": 45
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Garam Masala",
+   "slug": "garam-masala",
+   "description": "House blend of whole spices, roasted and ground.",
+   "highlights": [
+    "Roasted whole spices",
+    "Small batch ground",
+    "No fillers"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "12 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Airtight container"
+    },
+    {
+     "label": "Type",
+     "value": "Blended"
+    }
+   ],
+   "tags": [
+    "masala",
+    "garam-masala"
+   ],
+   "category": "oil-masala",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Garam%20Masala"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MSL-052",
+     "label": "100 g",
+     "attributes": {
+      "Weight": "100 g"
+     },
+     "mrp": 9000,
+     "price": 7900,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Cumin Seeds",
+   "slug": "cumin-seeds",
+   "description": "Cleaned jeera with a strong aroma.",
+   "highlights": [
+    "Machine cleaned",
+    "Strong aroma",
+    "Whole seeds"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "12 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Airtight container"
+    },
+    {
+     "label": "Type",
+     "value": "Whole"
+    }
+   ],
+   "tags": [
+    "masala",
+    "cumin",
+    "jeera"
+   ],
+   "category": "oil-masala",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cumin%20Seeds"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MSL-053",
+     "label": "200 g",
+     "attributes": {
+      "Weight": "200 g"
+     },
+     "mrp": 11000,
+     "price": 9500,
+     "stock": 35
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Assam Tea",
+   "slug": "assam-tea",
+   "description": "Strong CTC Assam tea for a full-bodied cup.",
+   "highlights": [
+    "Strong CTC leaf",
+    "Full bodied",
+    "Garden fresh"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "18 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Airtight container"
+    },
+    {
+     "label": "Type",
+     "value": "CTC, strong"
+    }
+   ],
+   "tags": [
+    "tea",
+    "chai",
+    "beverages"
+   ],
+   "category": "snacks-beverages",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Assam%20Tea"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-SNK-054",
+     "label": "250 g",
+     "attributes": {
+      "Weight": "250 g"
+     },
+     "mrp": 14500,
+     "price": 12900,
+     "stock": 45
+    },
+    {
+     "sku": "HT-SNK-055",
+     "label": "500 g",
+     "attributes": {
+      "Weight": "500 g"
+     },
+     "mrp": 27500,
+     "price": 24500,
+     "stock": 30
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Fresh and well packed.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Glucose Biscuits",
+   "slug": "glucose-biscuits",
+   "description": "Everyday glucose biscuits, pack of six.",
+   "highlights": [
+    "Pack of 6",
+    "Source of energy",
+    "Everyday snack"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "6 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Pack size",
+     "value": "6 × 60 g"
+    }
+   ],
+   "tags": [
+    "biscuits",
+    "snacks"
+   ],
+   "category": "snacks-beverages",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Glucose%20Biscuits"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-SNK-056",
+     "label": "Pack of 6",
+     "attributes": {
+      "Pack": "6 × 60 g"
+     },
+     "mrp": 6000,
+     "price": 5400,
+     "stock": 55
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Namkeen Mixture",
+   "slug": "namkeen-mixture",
+   "description": "Crunchy savoury mixture with peanuts and sev.",
+   "highlights": [
+    "Peanuts and sev",
+    "Fried in refined oil",
+    "Resealable pack"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "4 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Airtight container"
+    },
+    {
+     "label": "Type",
+     "value": "Savoury mixture"
+    }
+   ],
+   "tags": [
+    "namkeen",
+    "snacks"
+   ],
+   "category": "snacks-beverages",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Namkeen%20Mixture"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-SNK-057",
+     "label": "400 g",
+     "attributes": {
+      "Weight": "400 g"
+     },
+     "mrp": 9000,
+     "price": 7900,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Instant Noodles",
+   "slug": "instant-noodles",
+   "description": "Masala instant noodles, pack of eight.",
+   "highlights": [
+    "Pack of 8",
+    "Ready in 2 minutes",
+    "Masala flavour"
+   ],
+   "specs": [
+    {
+     "label": "Shelf life",
+     "value": "9 months"
+    },
+    {
+     "label": "Storage",
+     "value": "Cool, dry place"
+    },
+    {
+     "label": "Pack size",
+     "value": "8 × 70 g"
+    }
+   ],
+   "tags": [
+    "noodles",
+    "snacks",
+    "instant"
+   ],
+   "category": "snacks-beverages",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Instant%20Noodles"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-SNK-058",
+     "label": "Pack of 8",
+     "attributes": {
+      "Pack": "8 × 70 g"
+     },
+     "mrp": 11200,
+     "price": 9900,
+     "stock": 45
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Paracetamol 500 mg Tablets",
+   "slug": "paracetamol-500-mg-tablets",
+   "description": "Paracetamol tablets for fever and mild pain. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Sealed strip with visible expiry",
+    "Common fever and pain relief",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Tablet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Strip of 10"
+    },
+    {
+     "label": "Composition",
+     "value": "Paracetamol IP 500 mg"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "paracetamol",
+    "fever",
+    "pain"
+   ],
+   "category": "pain-relief",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Paracetamol%20500%20mg%20Tablets"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-MED-059",
+     "label": "Strip of 10",
+     "attributes": {
+      "Pack": "10 tablets"
+     },
+     "mrp": 3200,
+     "price": 2900,
+     "stock": 80
+    },
+    {
+     "sku": "HT-MED-060",
+     "label": "3 strips",
+     "attributes": {
+      "Pack": "30 tablets"
+     },
+     "mrp": 9000,
+     "price": 7900,
+     "stock": 40
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Delivered quickly, sealed pack with a clear expiry date.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Ibuprofen 400 mg Tablets",
+   "slug": "ibuprofen-400-mg-tablets",
+   "description": "Ibuprofen tablets for pain and inflammation. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Sealed strip with visible expiry",
+    "Take after food",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Tablet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Strip of 10"
+    },
+    {
+     "label": "Composition",
+     "value": "Ibuprofen IP 400 mg"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "ibuprofen",
+    "pain"
+   ],
+   "category": "pain-relief",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Ibuprofen%20400%20mg%20Tablets"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-061",
+     "label": "Strip of 10",
+     "attributes": {
+      "Pack": "10 tablets"
+     },
+     "mrp": 4500,
+     "price": 3900,
+     "stock": 60
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Pain Relief Gel",
+   "slug": "pain-relief-gel",
+   "description": "Topical diclofenac gel for muscle and joint pain. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "For external use only",
+    "Non-greasy",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Topical gel"
+    },
+    {
+     "label": "Pack size",
+     "value": "30 g tube"
+    },
+    {
+     "label": "Use",
+     "value": "External use only"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "gel",
+    "pain",
+    "muscle"
+   ],
+   "category": "pain-relief",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Pain%20Relief%20Gel"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-062",
+     "label": "30 g",
+     "attributes": {
+      "Pack": "30 g tube"
+     },
+     "mrp": 12500,
+     "price": 10900,
+     "stock": 45
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Pain Relief Spray",
+   "slug": "pain-relief-spray",
+   "description": "Cooling spray for sprains and sports strain. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "For external use only",
+    "Quick cooling effect",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Spray"
+    },
+    {
+     "label": "Pack size",
+     "value": "100 ml"
+    },
+    {
+     "label": "Use",
+     "value": "External use only"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "spray",
+    "pain",
+    "sprain"
+   ],
+   "category": "pain-relief",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Pain%20Relief%20Spray"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-063",
+     "label": "100 ml",
+     "attributes": {
+      "Pack": "100 ml"
+     },
+     "mrp": 23000,
+     "price": 19900,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Cetirizine 10 mg Tablets",
+   "slug": "cetirizine-10-mg-tablets",
+   "description": "Antihistamine tablets for allergy, sneezing and runny nose. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "May cause drowsiness",
+    "Sealed strip with visible expiry",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Tablet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Strip of 10"
+    },
+    {
+     "label": "Composition",
+     "value": "Cetirizine Hydrochloride IP 10 mg"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "cetirizine",
+    "allergy",
+    "cold"
+   ],
+   "category": "cold-cough-fever",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cetirizine%2010%20mg%20Tablets"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-064",
+     "label": "Strip of 10",
+     "attributes": {
+      "Pack": "10 tablets"
+     },
+     "mrp": 2800,
+     "price": 2400,
+     "stock": 70
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Cough Syrup",
+   "slug": "cough-syrup",
+   "description": "Soothing syrup for dry and tickly cough. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Measuring cap included",
+    "Honey lemon flavour",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Syrup"
+    },
+    {
+     "label": "Pack size",
+     "value": "100 ml"
+    },
+    {
+     "label": "Flavour",
+     "value": "Honey lemon"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "cough",
+    "syrup",
+    "cold"
+   ],
+   "category": "cold-cough-fever",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cough%20Syrup"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-065",
+     "label": "100 ml",
+     "attributes": {
+      "Pack": "100 ml"
+     },
+     "mrp": 11500,
+     "price": 9900,
+     "stock": 50
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Paracetamol Syrup for Children",
+   "slug": "paracetamol-syrup-for-children",
+   "description": "Paediatric paracetamol suspension for fever in children. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Dosing cup included",
+    "Dose by body weight — check with your doctor",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Oral suspension"
+    },
+    {
+     "label": "Pack size",
+     "value": "60 ml"
+    },
+    {
+     "label": "Composition",
+     "value": "Paracetamol IP 125 mg / 5 ml"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "paracetamol",
+    "children",
+    "fever"
+   ],
+   "category": "cold-cough-fever",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Paracetamol%20Syrup%20for%20Children"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-066",
+     "label": "60 ml",
+     "attributes": {
+      "Pack": "60 ml"
+     },
+     "mrp": 5500,
+     "price": 4900,
+     "stock": 55
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Vapour Rub",
+   "slug": "vapour-rub",
+   "description": "Menthol and eucalyptus rub for blocked nose relief. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "For external use only",
+    "Also used for steam inhalation",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Topical ointment"
+    },
+    {
+     "label": "Pack size",
+     "value": "50 ml jar"
+    },
+    {
+     "label": "Use",
+     "value": "External use only"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "vaporub",
+    "cold",
+    "congestion"
+   ],
+   "category": "cold-cough-fever",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Vapour%20Rub"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-067",
+     "label": "50 ml",
+     "attributes": {
+      "Pack": "50 ml"
+     },
+     "mrp": 16500,
+     "price": 14500,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Antacid Syrup",
+   "slug": "antacid-syrup",
+   "description": "Antacid suspension for acidity, heartburn and gas. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Fast acting",
+    "Mint flavour",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Oral suspension"
+    },
+    {
+     "label": "Pack size",
+     "value": "170 ml"
+    },
+    {
+     "label": "Flavour",
+     "value": "Mint"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "antacid",
+    "acidity",
+    "digestion"
+   ],
+   "category": "digestive-care",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Antacid%20Syrup"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-068",
+     "label": "170 ml",
+     "attributes": {
+      "Pack": "170 ml"
+     },
+     "mrp": 14000,
+     "price": 12500,
+     "stock": 50
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "ORS Powder",
+   "slug": "ors-powder",
+   "description": "WHO-formula oral rehydration salts for dehydration. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "WHO formula",
+    "Dissolve one sachet in 1 litre of clean water",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Powder sachet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Pack of 5 sachets"
+    },
+    {
+     "label": "Formula",
+     "value": "WHO recommended ORS"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "ors",
+    "rehydration",
+    "electrolyte"
+   ],
+   "category": "digestive-care",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=ORS%20Powder"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-MED-069",
+     "label": "Pack of 5",
+     "attributes": {
+      "Pack": "5 sachets"
+     },
+     "mrp": 10000,
+     "price": 8900,
+     "stock": 70
+    },
+    {
+     "sku": "HT-MED-070",
+     "label": "Pack of 10",
+     "attributes": {
+      "Pack": "10 sachets"
+     },
+     "mrp": 19000,
+     "price": 16900,
+     "stock": 40
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Delivered quickly, sealed pack with a clear expiry date.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Digestive Enzyme Syrup",
+   "slug": "digestive-enzyme-syrup",
+   "description": "Enzyme syrup that helps with heaviness after meals. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Measuring cap included",
+    "Take after meals",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Syrup"
+    },
+    {
+     "label": "Pack size",
+     "value": "200 ml"
+    },
+    {
+     "label": "Flavour",
+     "value": "Mixed fruit"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "enzyme",
+    "digestion"
+   ],
+   "category": "digestive-care",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Digestive%20Enzyme%20Syrup"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-071",
+     "label": "200 ml",
+     "attributes": {
+      "Pack": "200 ml"
+     },
+     "mrp": 17500,
+     "price": 15500,
+     "stock": 35
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Isabgol Husk",
+   "slug": "isabgol-husk",
+   "description": "Natural psyllium husk fibre supplement. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "100% psyllium husk",
+    "Take with plenty of water",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Husk powder"
+    },
+    {
+     "label": "Pack size",
+     "value": "200 g"
+    },
+    {
+     "label": "Source",
+     "value": "Psyllium husk"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "isabgol",
+    "fibre",
+    "psyllium"
+   ],
+   "category": "digestive-care",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Isabgol%20Husk"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-072",
+     "label": "200 g",
+     "attributes": {
+      "Pack": "200 g"
+     },
+     "mrp": 19500,
+     "price": 17500,
+     "stock": 30
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Vitamin C Chewable Tablets",
+   "slug": "vitamin-c-chewable-tablets",
+   "description": "Chewable vitamin C tablets. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Orange flavour",
+    "Chewable",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Chewable tablet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Strip of 15"
+    },
+    {
+     "label": "Composition",
+     "value": "Ascorbic acid 500 mg"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "vitamin-c",
+    "immunity",
+    "supplement"
+   ],
+   "category": "vitamins-supplements",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Vitamin%20C%20Chewable%20Tablets"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-073",
+     "label": "Strip of 15",
+     "attributes": {
+      "Pack": "15 tablets"
+     },
+     "mrp": 9500,
+     "price": 8500,
+     "stock": 50
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Vitamin D3 Sachets",
+   "slug": "vitamin-d3-sachets",
+   "description": "Weekly vitamin D3 oral sachets. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "One sachet weekly, or as advised",
+    "Easy to mix",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Oral granules"
+    },
+    {
+     "label": "Pack size",
+     "value": "Pack of 4 sachets"
+    },
+    {
+     "label": "Composition",
+     "value": "Cholecalciferol 60000 IU"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "vitamin-d",
+    "supplement"
+   ],
+   "category": "vitamins-supplements",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Vitamin%20D3%20Sachets"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-074",
+     "label": "Pack of 4",
+     "attributes": {
+      "Pack": "4 sachets"
+     },
+     "mrp": 22000,
+     "price": 19500,
+     "stock": 35
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Multivitamin Tablets",
+   "slug": "multivitamin-tablets",
+   "description": "Daily multivitamin and multimineral tablets. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "One a day",
+    "Sealed bottle",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Tablet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Bottle of 30"
+    },
+    {
+     "label": "Composition",
+     "value": "Multivitamin with minerals"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "multivitamin",
+    "supplement"
+   ],
+   "category": "vitamins-supplements",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Multivitamin%20Tablets"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-MED-075",
+     "label": "Bottle of 30",
+     "attributes": {
+      "Pack": "30 tablets"
+     },
+     "mrp": 29500,
+     "price": 25900,
+     "stock": 40
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Delivered quickly, sealed pack with a clear expiry date.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Calcium with Vitamin D3 Tablets",
+   "slug": "calcium-with-vitamin-d3-tablets",
+   "description": "Calcium carbonate tablets with vitamin D3. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Supports bone health",
+    "Take after food",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Tablet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Strip of 15"
+    },
+    {
+     "label": "Composition",
+     "value": "Calcium carbonate 500 mg + Vitamin D3"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "calcium",
+    "supplement",
+    "bones"
+   ],
+   "category": "vitamins-supplements",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Calcium%20with%20Vitamin%20D3%20Tablets"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-076",
+     "label": "Strip of 15",
+     "attributes": {
+      "Pack": "15 tablets"
+     },
+     "mrp": 14500,
+     "price": 12900,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Adhesive Bandages",
+   "slug": "adhesive-bandages",
+   "description": "Washproof adhesive bandages for small cuts. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Washproof",
+    "Sterile until opened",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Adhesive dressing"
+    },
+    {
+     "label": "Pack size",
+     "value": "Pack of 20"
+    },
+    {
+     "label": "Type",
+     "value": "Washproof"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "bandage",
+    "first-aid"
+   ],
+   "category": "first-aid",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Adhesive%20Bandages"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-077",
+     "label": "Pack of 20",
+     "attributes": {
+      "Pack": "20 strips"
+     },
+     "mrp": 4500,
+     "price": 3900,
+     "stock": 70
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Antiseptic Liquid",
+   "slug": "antiseptic-liquid",
+   "description": "Antiseptic disinfectant for cuts, wounds and surfaces. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Dilute before use",
+    "For external use only",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Liquid"
+    },
+    {
+     "label": "Pack size",
+     "value": "200 ml"
+    },
+    {
+     "label": "Use",
+     "value": "External use only"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "antiseptic",
+    "first-aid",
+    "dettol"
+   ],
+   "category": "first-aid",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Antiseptic%20Liquid"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-MED-078",
+     "label": "200 ml",
+     "attributes": {
+      "Pack": "200 ml"
+     },
+     "mrp": 15500,
+     "price": 13900,
+     "stock": 55
+    },
+    {
+     "sku": "HT-MED-079",
+     "label": "500 ml",
+     "attributes": {
+      "Pack": "500 ml"
+     },
+     "mrp": 32500,
+     "price": 28900,
+     "stock": 30
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Delivered quickly, sealed pack with a clear expiry date.",
+     "name": "Meera Iyer",
+     "email": "meera.iyer@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Sunil Rao",
+     "email": "sunil.rao@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Cotton Roll",
+   "slug": "cotton-roll",
+   "description": "Absorbent cotton wool roll. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Highly absorbent",
+    "Sealed pack",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Absorbent cotton"
+    },
+    {
+     "label": "Pack size",
+     "value": "100 g roll"
+    },
+    {
+     "label": "Type",
+     "value": "Non-sterile"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "cotton",
+    "first-aid"
+   ],
+   "category": "first-aid",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Cotton%20Roll"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-080",
+     "label": "100 g",
+     "attributes": {
+      "Pack": "100 g"
+     },
+     "mrp": 6500,
+     "price": 5500,
+     "stock": 60
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Crepe Bandage",
+   "slug": "crepe-bandage",
+   "description": "Elastic crepe bandage for sprains and support. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Reusable and washable",
+    "Firm support",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Elastic bandage"
+    },
+    {
+     "label": "Pack size",
+     "value": "10 cm × 4 m"
+    },
+    {
+     "label": "Type",
+     "value": "Reusable"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "bandage",
+    "crepe",
+    "first-aid"
+   ],
+   "category": "first-aid",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Crepe%20Bandage"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-081",
+     "label": "10 cm",
+     "attributes": {
+      "Pack": "10 cm × 4 m"
+     },
+     "mrp": 11000,
+     "price": 9500,
+     "stock": 40
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Digital Thermometer",
+   "slug": "digital-thermometer",
+   "description": "Digital clinical thermometer with a flexible tip. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Reading in about 60 seconds",
+    "Flexible tip",
+    "Battery included"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Device"
+    },
+    {
+     "label": "Display",
+     "value": "Digital LCD"
+    },
+    {
+     "label": "Battery",
+     "value": "Included"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "thermometer",
+    "first-aid",
+    "fever"
+   ],
+   "category": "first-aid",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Digital%20Thermometer"
+   ],
+   "isFeatured": true,
+   "variants": [
+    {
+     "sku": "HT-MED-082",
+     "label": "1 unit",
+     "attributes": {
+      "Pack": "1 unit"
+     },
+     "mrp": 29900,
+     "price": 24900,
+     "stock": 35
+    }
+   ],
+   "reviews": [
+    {
+     "rating": 5,
+     "comment": "Delivered quickly, sealed pack with a clear expiry date.",
+     "name": "Asha Verma",
+     "email": "asha.verma@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    },
+    {
+     "rating": 4,
+     "comment": "Good quality, delivered on time.",
+     "name": "Rakesh Nair",
+     "email": "rakesh.nair@haat.test",
+     "date": "2025-09-18T10:00:00.000Z"
+    }
+   ]
+  },
+  {
+   "name": "Glucometer Kit",
+   "slug": "glucometer-kit",
+   "description": "Blood glucose monitoring kit with lancets and starter strips. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Results in about 5 seconds",
+    "Starter strips included",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Device kit"
+    },
+    {
+     "label": "In the box",
+     "value": "Meter, lancing device, 10 lancets, 10 strips"
+    },
+    {
+     "label": "Battery",
+     "value": "Included"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "glucometer",
+    "diabetes",
+    "device"
+   ],
+   "category": "diabetes-care",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Glucometer%20Kit"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-083",
+     "label": "1 kit",
+     "attributes": {
+      "Pack": "1 kit"
+     },
+     "mrp": 89900,
+     "price": 74900,
+     "stock": 20
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Glucometer Test Strips",
+   "slug": "glucometer-test-strips",
+   "description": "Replacement blood glucose test strips. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Check meter compatibility",
+    "Foil wrapped",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Test strips"
+    },
+    {
+     "label": "Pack size",
+     "value": "Pack of 25"
+    },
+    {
+     "label": "Note",
+     "value": "Check compatibility with your meter"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "test-strips",
+    "diabetes"
+   ],
+   "category": "diabetes-care",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Glucometer%20Test%20Strips"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-084",
+     "label": "Pack of 25",
+     "attributes": {
+      "Pack": "25 strips"
+     },
+     "mrp": 59900,
+     "price": 52900,
+     "stock": 30
+    },
+    {
+     "sku": "HT-MED-085",
+     "label": "Pack of 50",
+     "attributes": {
+      "Pack": "50 strips"
+     },
+     "mrp": 115000,
+     "price": 99900,
+     "stock": 15
+    }
+   ],
+   "reviews": []
+  },
+  {
+   "name": "Sugar Free Tablets",
+   "slug": "sugar-free-tablets",
+   "description": "Low-calorie tabletop sweetener tablets. Use as directed on the pack, or as advised by your physician or pharmacist.",
+   "highlights": [
+    "Low calorie",
+    "Dispenser bottle",
+    "Over the counter"
+   ],
+   "specs": [
+    {
+     "label": "Form",
+     "value": "Tablet"
+    },
+    {
+     "label": "Pack size",
+     "value": "Bottle of 100"
+    },
+    {
+     "label": "Type",
+     "value": "Tabletop sweetener"
+    },
+    {
+     "label": "Prescription",
+     "value": "Not required (over the counter)"
+    },
+    {
+     "label": "Storage",
+     "value": "Store below 25°C, away from direct sunlight"
+    },
+    {
+     "label": "Country of origin",
+     "value": "India"
+    }
+   ],
+   "tags": [
+    "medicine",
+    "otc",
+    "sweetener",
+    "diabetes",
+    "sugar-free"
+   ],
+   "category": "diabetes-care",
+   "brand": null,
+   "images": [
+    "https://placehold.co/600x600/FFC727/1C1A14/png?text=Sugar%20Free%20Tablets"
+   ],
+   "isFeatured": false,
+   "variants": [
+    {
+     "sku": "HT-MED-086",
+     "label": "Bottle of 100",
+     "attributes": {
+      "Pack": "100 tablets"
+     },
+     "mrp": 15000,
+     "price": 13500,
+     "stock": 45
+    }
+   ],
+   "reviews": []
   }
  ]
 }

@@ -17,7 +17,8 @@ export function useLogin() {
 export function useRegister() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (input: { name: string; email: string; phone: string; password: string }) => api.post<Session>("/auth/register", input),
+    mutationFn: (input: { name: string; email: string; phone: string; password: string; referralCode?: string }) =>
+      api.post<Session>("/auth/register", input),
     onSuccess: async (session) => {
       await useAuthStore.getState().setSession(session);
       await queryClient.invalidateQueries();

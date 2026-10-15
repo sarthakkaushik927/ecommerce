@@ -8,15 +8,18 @@ import { colors, radius, shadow } from "@/lib/theme";
 type PillTabProps = TabTriggerSlotProps & { icon: LucideIcon; label: string; badge?: number };
 
 /** The active tab expands into a yellow capsule with its label; inactive tabs show the icon only. */
-export const PillTab = forwardRef<View, PillTabProps>(function PillTab({ icon: Icon, label, badge, isFocused, ...props }, ref) {
+export const PillTab = forwardRef<View, PillTabProps>(function PillTab(
+  { icon: Icon, label, badge, isFocused, style: _style, ...props },
+  ref
+) {
   return (
     <Pressable
       ref={ref}
       accessibilityRole="tab"
       accessibilityLabel={label}
       accessibilityState={{ selected: isFocused }}
-      style={({ pressed }) => [styles.tab, isFocused && styles.active, pressed && styles.pressed]}
       {...props}
+      style={({ pressed }) => [styles.tab, isFocused && styles.active, pressed && styles.pressed]}
     >
       <View>
         <Icon size={22} color={isFocused ? colors.ink900 : colors.ink500} strokeWidth={1.75} />
@@ -36,8 +39,8 @@ export const PillTab = forwardRef<View, PillTabProps>(function PillTab({ icon: I
 export const pillBarStyles = StyleSheet.create({
   bar: {
     position: "absolute",
-    left: 16,
-    right: 16,
+    left: 12,
+    right: 12,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -51,7 +54,7 @@ export const pillBarStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
-  tab: { flexDirection: "row", alignItems: "center", gap: 8, height: 48, paddingHorizontal: 14, borderRadius: radius.pill },
+  tab: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, height: 48, paddingHorizontal: 12, borderRadius: radius.pill },
   active: { backgroundColor: colors.brand500, paddingHorizontal: 18 },
   pressed: { transform: [{ scale: 0.97 }] },
   badge: {

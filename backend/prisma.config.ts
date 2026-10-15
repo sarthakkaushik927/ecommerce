@@ -1,5 +1,8 @@
+import dns from "node:dns";
 import { existsSync } from "node:fs";
 import { defineConfig } from "prisma/config";
+
+dns.setDefaultResultOrder("ipv4first");
 
 if (existsSync(".env")) process.loadEnvFile(".env");
 

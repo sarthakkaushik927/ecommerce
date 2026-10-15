@@ -1,7 +1,7 @@
 import compression from "compression";
 import cors from "cors";
-import express, { type Express } from "express";
-import helmet from "helmet";
+import express, { type Express, type RequestHandler } from "express";
+import _helmet, { type HelmetOptions } from "helmet";
 import path from "node:path";
 import { pinoHttp } from "pino-http";
 import { env, isTest } from "./config/env.js";
@@ -9,6 +9,9 @@ import { logger } from "./lib/logger.js";
 import { errorHandler, notFoundHandler } from "./middleware/error-handler.js";
 import { apiLimiter } from "./middleware/rate-limit.js";
 import { apiRouter } from "./routes.js";
+
+type HelmetFn = (options?: Readonly<HelmetOptions>) => RequestHandler;
+const helmet: HelmetFn = (_helmet as unknown as { default?: HelmetFn }).default ?? (_helmet as unknown as HelmetFn);
 
 export function createApp(): Express {
   const app = express();

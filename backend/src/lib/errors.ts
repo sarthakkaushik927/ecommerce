@@ -9,6 +9,7 @@ export type ErrorCode =
   | "COUPON_INVALID"
   | "INVALID_TRANSITION"
   | "RATE_LIMITED"
+  | "SERVICE_UNAVAILABLE"
   | "INTERNAL_ERROR";
 
 const statusByCode: Record<ErrorCode, number> = {
@@ -22,6 +23,7 @@ const statusByCode: Record<ErrorCode, number> = {
   COUPON_INVALID: 422,
   INVALID_TRANSITION: 409,
   RATE_LIMITED: 429,
+  SERVICE_UNAVAILABLE: 503,
   INTERNAL_ERROR: 500,
 };
 
@@ -52,5 +54,8 @@ export class AppError extends Error {
   }
   static conflict(message: string, details?: unknown) {
     return new AppError("CONFLICT", message, details);
+  }
+  static serviceUnavailable(message: string) {
+    return new AppError("SERVICE_UNAVAILABLE", message);
   }
 }

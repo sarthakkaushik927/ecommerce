@@ -3,14 +3,28 @@ import { z } from "zod";
 import { idParam, ok, requireUser } from "../../lib/http.js";
 import { adminOnly, authenticate } from "../../middleware/auth.js";
 import { adminAdjustCoins } from "../coins/coins.service.js";
+import { applyReferralCodeForUser, getReferralSummary } from "../referrals/referrals.service.js";
 import { coinAdjustSchema, customerListQuery, profileUpdateSchema } from "./users.schema.js";
 import * as service from "./users.service.js";
+
+const applyReferralSchema = z.object({
+  referralCode: z.string().trim().min(1, "Enter a referral code"),
+});
 
 export const profileRouter = Router();
 profileRouter.use(authenticate);
 
 profileRouter.patch("/", async (req: Request, res: Response) => {
   res.json(ok(await service.updateProfile(requireUser(req).userId, profileUpdateSchema.parse(req.body))));
+});
+
+profileRouter.get("/referrals", async (req: Request, res: Response) => {
+  res.json(ok(await getReferralSummary(requireUser(req).userId)));
+});
+
+profileRouter.post("/referrals", async (req: Request, res: Response) => {
+  const { referralCode } = applyReferralSchema.parse(req.body);
+  res.json(ok(await applyReferralCodeForUser(requireUser(req).userId, referralCode)));
 });
 
 export const adminCustomersRouter = Router();

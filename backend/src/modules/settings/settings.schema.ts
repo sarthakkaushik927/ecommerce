@@ -16,6 +16,9 @@ export const updateSettingsSchema = z
     returnWindowDays: z.number().int().min(0).max(60),
     codEnabled: z.boolean(),
     upiOnDeliveryEnabled: z.boolean(),
+    referralEnabled: z.boolean(),
+    referralReferrerCoins: z.number().int().min(0),
+    referralRefereeCoins: z.number().int().min(0),
   })
   .partial();
 
